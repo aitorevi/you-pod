@@ -1,3 +1,21 @@
+# You-pod
+Tu podcast al alcance de tu mano
+
+Requisitos funcionales - lo que debe hacer un sistema.
+
+Requisitos no funcionales - como lo hará.
+
+Software necesario
+- [WebStorm](https://www.jetbrains.com/es-es/webstorm/) - IDE específico para JavaScript.
+- [NextJs](https://nextjs.org/) - Framework de React para Web.
+- [TypeScript](https://www.typescriptlang.org/) - Lenguaje fuertemente tipado basado en JavaScript.
+- [Chakra](https://chakra-ui.com/) - Biblioteca de componentes para aplicaciones de React.
+- [NodeJs](https://nodejs.org/en) - Entorno de ejecución de JavaScript multiplataforma y de código abierto.
+
+Hardware necesario
+- Ordenador personal.
+- Conexión a internet.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
