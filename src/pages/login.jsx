@@ -7,6 +7,7 @@ const login = () => {
     if (session) {
         return (<div>
                     <p>Welcome, {session.user.email}</p>
+            <img src={session.user.image} alt="" style={{borderRadius: '50px'}}/>
                     <button onClick={()=> signOut()}>Sign out</button>
                 </div>)
     } else {
