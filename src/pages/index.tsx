@@ -2,8 +2,11 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import SmallWithNavigation from '../../components/footer'
+import SmallWithSocial from '../../components/footer2'
 
 const inter = Inter({ subsets: ['latin'] })
+
 
 export default function Home() {
   return (
@@ -117,6 +120,12 @@ export default function Home() {
             </p>
           </a>
         </div>
+        <footer>
+          <SmallWithNavigation/>
+        </footer>
+        <footer>
+          <SmallWithSocial/>
+        </footer>
       </main>
     </>
   )
