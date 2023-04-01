@@ -8,7 +8,7 @@ import {
     VisuallyHidden,
 } from '@chakra-ui/react';
 import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 const SocialButton = ({
                           children,
@@ -52,9 +52,9 @@ export default function SmallWithSocial() {
                 py={4}
                 direction={{ base: 'column', md: 'row' }}
                 spacing={4}
-                justify={{ base: 'center', md: 'space-between' }}
+                justify={{ base: 'center', md: 'center' }}
                 align={{ base: 'center', md: 'center' }}>
-                <Text>© 2023 You-Pod</Text>
+                {/*<Text>© 2022 Chakra Templates. All rights reserved</Text>*/}
                 <Stack direction={'row'} spacing={6}>
                     <SocialButton label={'Twitter'} href={'#'}>
                         <FaTwitter />
