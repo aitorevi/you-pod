@@ -8,13 +8,14 @@ import {
     useColorModeValue,
     VisuallyHidden,
 } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import React, {ReactNode} from 'react';
+import {FaInstagram, FaLinkedinIn, FaMedium, FaNewspaper, FaRegNewspaper, FaTwitter, FaYoutube} from "react-icons/fa";
 
 const SocialButton = ({
                           children,
                           label,
                           href,
-                      }:{
+                      }: {
     children: ReactNode;
     label: string;
     href: string;
@@ -49,17 +50,28 @@ export default function SmallWithNavigation() {
                 as={Stack}
                 maxW={'6xl'}
                 py={4}
-                direction={{ base: 'column', md: 'row' }}
+                direction={{base: 'column', md: 'row'}}
                 spacing={4}
-                justify={{ base: 'center', md: 'space-between' }}
-                align={{ base: 'center', md: 'center' }}>
+                justify={{base: 'center', md: 'space-between'}}
+                align={{base: 'center', md: 'center'}}>
                 <Stack direction={'row'} spacing={6}>
                     <Link href={'#'}>Home</Link>
                     <Link href={'#'}>About</Link>
-                    <Link href={'#'}>Blog</Link>
                     <Link href={'#'}>Contact</Link>
+                    <Link href={'#'}>Newsletter</Link>
                 </Stack>
-                <Text>© 2022 Chakra Templates. All rights reserved</Text>
+                <Text>© 2023 You-Pod. All rights reserved</Text>
+                <Stack direction={'row'} spacing={6}>
+                    <SocialButton label={'LinkedIn'} href={'#'}>
+                        <FaLinkedinIn />
+                    </SocialButton>
+                    <SocialButton label={'Twitter'} href={'#'}>
+                        <FaTwitter />
+                    </SocialButton>
+                    <SocialButton label={'YouTube'} href={'#'}>
+                        <FaMedium />
+                    </SocialButton>
+                </Stack>
             </Container>
         </Box>
     );

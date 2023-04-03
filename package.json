@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@types/node": "18.15.5",
@@ -18,13 +19,13 @@
     "eslint-config-next": "13.2.4",
     "framer-motion": "^6.5.1",
     "next": "13.2.4",
-    "next-auth": "^4.20.1",
+    "next-auth": "4.20.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.8.0",
+    "react-icons": "4.8.0",
     "typescript": "5.0.2"
   },
   "devDependencies": {
-    "@chakra-ui/react": "1.8.9"
+    "@chakra-ui/icons": "^2.0.18"
   }
 }
