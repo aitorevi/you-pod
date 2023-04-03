@@ -19,19 +19,7 @@ export default function Home() {
             </Head>
             <Nav/>
             <div className={styles.center}>
-
-                {/*<div>*/}
-                {/*    <Image*/}
-                {/*        className={styles.logo}*/}
-                {/*        src="/you-pod-text.svg"*/}
-                {/*        alt="You-Pod Logo"*/}
-                {/*        width={200}*/}
-                {/*        height={37}*/}
-                {/*        priority*/}
-                {/*    />*/}
-                {/*</div>*/}
-
-                <div className={styles.thirteen}>
+                <div className={styles.youpod}>
                     <Image
                         src="/you-pod-logo.svg"
                         alt="Logo"

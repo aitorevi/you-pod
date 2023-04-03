@@ -55,20 +55,19 @@ export default function SmallWithNavigation() {
                 justify={{base: 'center', md: 'space-between'}}
                 align={{base: 'center', md: 'center'}}>
                 <Stack direction={'row'} spacing={6}>
-                    <Link href={'#'}>Home</Link>
-                    <Link href={'#'}>About</Link>
-                    <Link href={'#'}>Contact</Link>
-                    <Link href={'#'}>Newsletter</Link>
+                    <Link href={'/'}>Home</Link>
+                    <Link href={'about'}>About</Link>
+                    <Link href={'newsletter'}>Newsletter</Link>
                 </Stack>
                 <Text>© 2023 You-Pod. All rights reserved</Text>
                 <Stack direction={'row'} spacing={6}>
-                    <SocialButton label={'LinkedIn'} href={'#'}>
+                    <SocialButton label={'LinkedIn'} href={'https://linkedin.com/in/aitor-reviriego-amor'}>
                         <FaLinkedinIn />
                     </SocialButton>
-                    <SocialButton label={'Twitter'} href={'#'}>
+                    <SocialButton label={'Twitter'} href={'https://twitter.com/aitorevi'}>
                         <FaTwitter />
                     </SocialButton>
-                    <SocialButton label={'YouTube'} href={'#'}>
+                    <SocialButton label={'Medium'} href={'https://medium.com/@aitorevi'}>
                         <FaMedium />
                     </SocialButton>
                 </Stack>

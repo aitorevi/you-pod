@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css'
 import Nav from '../../../components/navbar'
 import SmallWithNavigation from '../../../components/footer'
 import React from "react";
+import Link from "next/link";
 
 const inter = Inter({subsets: ['latin']})
 export default function Podcast() {
@@ -18,18 +19,6 @@ export default function Podcast() {
             </Head>
             <Nav/>
             <div className={styles.center}>
-
-                {/*<div>*/}
-                {/*    <Image*/}
-                {/*        className={styles.logo}*/}
-                {/*        src="/you-pod-text.svg"*/}
-                {/*        alt="You-Pod Logo"*/}
-                {/*        width={200}*/}
-                {/*        height={37}*/}
-                {/*        priority*/}
-                {/*    />*/}
-                {/*</div>*/}
-
                 <div className={styles.youpod}>
                     <Image
                         src="/you-pod-logo.svg"
@@ -39,6 +28,7 @@ export default function Podcast() {
                         priority
                     />
                 </div>
+                <Link href={'/'}>Inicio</Link>
             </div>
             <footer>
                 <SmallWithNavigation/>

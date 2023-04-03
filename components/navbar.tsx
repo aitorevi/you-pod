@@ -60,14 +60,17 @@ export default function WithSubnavigation() {
                         textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
                         fontFamily={'heading'}
                         color={useColorModeValue('gray.800', 'white')}>
-                        <Image
-                            className={styles.logo}
-                            src="/you-pod-text.svg"
-                            alt="You-Pod Logo"
-                            width={100}
-                            height={37}
-                            priority
-                        />
+
+                        <Link href={'/'}>
+                            <Image
+                                className={styles.logo}
+                                src="/you-pod-text.svg"
+                                alt="You-Pod Logo"
+                                width={100}
+                                height={37}
+                                priority
+                            />
+                        </Link>
                     </Text>
 
                     <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
@@ -85,7 +88,7 @@ export default function WithSubnavigation() {
                         fontSize={'sm'}
                         fontWeight={400}
                         variant={'link'}
-                        href={'#'}>
+                        href={'sign_in'}>
                         Sign In
                     </Button>
                     <Button
@@ -95,7 +98,7 @@ export default function WithSubnavigation() {
                         fontWeight={600}
                         color={'white'}
                         bg={'gray.900'}
-                        href={'#'}
+                        href={'sign_up'}
                         _hover={{
                             bg: 'gray.700',
                         }}>
@@ -298,10 +301,10 @@ const NAV_ITEMS: Array<NavItem> = [
      */
     {
         label: 'Podcast',
-        href: '#',
+        href: '/podcast',
     },
     {
         label: 'Newsletter',
-        href: '#',
+        href: 'newsletter',
     },
 ];
