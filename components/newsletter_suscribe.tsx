@@ -23,7 +23,7 @@ export default function Simple() {
 
     return (
         <Flex
-            // minH={'50vh'}
+            minH={'100vh'}
             align={'center'}
             justify={'center'}
             bg={useColorModeValue('gray.50', 'gray.800')}>
@@ -32,17 +32,16 @@ export default function Simple() {
                 bg={useColorModeValue('white', 'whiteAlpha.100')}
                 boxShadow={'xl'}
                 rounded={'lg'}
-                p={6}
-                >
-                {/*<Heading*/}
-                {/*    as={'h2'}*/}
-                {/*    fontSize={{ base: 'xl', sm: '2xl' }}*/}
-                {/*    textAlign={'center'}*/}
-                {/*    mb={5}>*/}
-                {/*    Subscribe to our Newsletter*/}
-                {/*</Heading>*/}
+                p={6}>
+                <Heading
+                    as={'h2'}
+                    fontSize={{ base: 'xl', sm: '2xl' }}
+                    textAlign={'center'}
+                    mb={5}>
+                    Subscribe to our Newsletter
+                </Heading>
                 <Stack
-                    direction={{ base: 'column', md: 'column' }}
+                    direction={{ base: 'column', md: 'row' }}
                     as={'form'}
                     spacing={'12px'}
                     onSubmit={(e: FormEvent) => {
@@ -73,7 +72,7 @@ export default function Simple() {
                             id={'email'}
                             type={'email'}
                             required
-                            placeholder={'you@domain.com'}
+                            placeholder={'Your Email'}
                             aria-label={'Your Email'}
                             value={email}
                             disabled={state !== 'initial'}
@@ -98,7 +97,7 @@ export default function Simple() {
                     color={error ? 'red.500' : 'gray.500'}>
                     {error
                         ? 'Oh no an error occured! 😢 Please try again later.'
-                        : ""}
+                        : "You won't receive any spam! ✌️"}
                 </Text>
             </Container>
         </Flex>

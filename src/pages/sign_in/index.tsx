@@ -6,6 +6,7 @@ import Nav from '../../../components/navbar'
 import SmallWithNavigation from '../../../components/footer'
 import React from "react";
 import Link from "next/link";
+import SimpleCard from "../../../components/sign_in";
 
 const inter = Inter({subsets: ['latin']})
 export default function Podcast() {
@@ -18,18 +19,7 @@ export default function Podcast() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Nav/>
-            <div className={styles.center}>
-                <div className={styles.youpod}>
-                    <Image
-                        src="/you-pod-logo.svg"
-                        alt="Logo"
-                        width={130}
-                        height={36}
-                        priority
-                    />
-                </div>
-                <Link href={'/'}>Inicio</Link>
-            </div>
+            <SimpleCard/>
             <footer>
                 <SmallWithNavigation/>
             </footer>
