@@ -5,6 +5,8 @@ import styles from '@/styles/Home.module.css'
 import Nav from '../../../components/navbar'
 import SmallWithNavigation from '../../../components/footer'
 import React from "react";
+import {MyPlayer} from "../../../components/my_player";
+import {Box, Container, Stack} from "@chakra-ui/react";
 
 const inter = Inter({subsets: ['latin']})
 export default function Podcast() {
@@ -17,29 +19,8 @@ export default function Podcast() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Nav/>
-            <div className={styles.center}>
-
-                {/*<div>*/}
-                {/*    <Image*/}
-                {/*        className={styles.logo}*/}
-                {/*        src="/you-pod-text.svg"*/}
-                {/*        alt="You-Pod Logo"*/}
-                {/*        width={200}*/}
-                {/*        height={37}*/}
-                {/*        priority*/}
-                {/*    />*/}
-                {/*</div>*/}
-
-                <div className={styles.youpod}>
-                    <Image
-                        src="/you-pod-logo.svg"
-                        alt="Logo"
-                        width={130}
-                        height={36}
-                        priority
-                    />
-                </div>
-            </div>
+            <MyPlayer url={"https://www.carlosble.com/downloads/podcasts/e50.mp3"}/>
+            <MyPlayer url={"https://www.carlosble.com/downloads/podcasts/e48.mp3"}/>
             <footer>
                 <SmallWithNavigation/>
             </footer>

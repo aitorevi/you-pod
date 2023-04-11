@@ -5,7 +5,6 @@ import styles from '@/styles/Home.module.css'
 import Nav from '../../components/navbar'
 import SmallWithNavigation from '../../components/footer'
 import React from "react";
-import Link from "next/link";
 
 const inter = Inter({subsets: ['latin']})
 export default function Home() {
@@ -27,7 +26,6 @@ export default function Home() {
                         height={36}
                         priority
                     />
-                    <Link href={'/podcast'}>Link to podcast</Link>
                 </div>
             </div>
             <footer>

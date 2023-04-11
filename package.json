@@ -20,12 +20,15 @@
     "framer-motion": "^6.5.1",
     "next": "13.2.4",
     "next-auth": "4.20.1",
+    "p4-css": "^1.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "4.8.0",
+    "react-use": "^17.4.0",
     "typescript": "5.0.2"
   },
   "devDependencies": {
-    "@chakra-ui/icons": "2.0.18"
+    "@chakra-ui/icons": "2.0.18",
+    "react-simple-player": "1.1.0"
   }
 }
