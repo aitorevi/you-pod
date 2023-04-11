@@ -1,12 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import {Inter} from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import Nav from '../../../components/navbar'
 import SmallWithNavigation from '../../../components/footer'
 import React from "react";
 import {MyPlayer} from "../../../components/my_player";
-import {Box, Container, Stack} from "@chakra-ui/react";
+import {Box} from "@chakra-ui/react";
 
 const inter = Inter({subsets: ['latin']})
 export default function Podcast() {
@@ -19,8 +17,19 @@ export default function Podcast() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Nav/>
-            <MyPlayer url={"https://www.carlosble.com/downloads/podcasts/e50.mp3"}/>
-            <MyPlayer url={"https://www.carlosble.com/downloads/podcasts/e48.mp3"}/>
+                <Box
+                    minH={'100vh'}>
+                    <MyPlayer
+                        url={"https://www.carlosble.com/downloads/podcasts/e50.mp3"}
+                        title={"E50: ¿Cómo nos va a cambiar la inteligencia artificial?"}
+                        description={"Te comparto mis reflexiones sobre el futuro utópico o distópico que supone la IA para la humanidad. Te hablo de un episodio del podcast Your Undivided Attention, llamado The AI Dilemma, que me ha dado mucho que pensar, así como de otros podcasts y experiencias propias. La inteligencia artificial va a suponer un cambio mayor que la revolución industrial, y en menor tiempo."}
+                    />
+                    <MyPlayer
+                        url={"https://www.carlosble.com/downloads/podcasts/e48.mp3"}
+                        title={"E48: Tres pilares de la profesionalidad, con Roberto Canales"}
+                        description={"Converso con Roberto Canales, CEO y co-fundador de Autentia, profesor en el IE, autor de múltiples libros. Roberto se define como eterno aprendiz. En esta conversación hablamos de los tres pilares: habilidades técnicas, no técnicas y valor entregado y percibido por el cliente. En la última parte de la conversación, también hablamos de la IA, cómo no."}
+                    />
+                </Box>
             <footer>
                 <SmallWithNavigation/>
             </footer>

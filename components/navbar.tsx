@@ -1,5 +1,4 @@
 'use client';
-// @ts-ignore
 import {
     Box,
     Flex,
@@ -13,6 +12,7 @@ import {
     Popover,
     PopoverTrigger,
     PopoverContent,
+    useColorMode,
     useColorModeValue,
     useBreakpointValue,
     useDisclosure,
@@ -22,6 +22,8 @@ import {
     CloseIcon,
     ChevronDownIcon,
     ChevronRightIcon,
+    MoonIcon,
+    SunIcon,
 } from '@chakra-ui/icons';
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
@@ -29,7 +31,7 @@ import React from "react";
 
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
-
+    const { colorMode, toggleColorMode } = useColorMode();
     return (
         <Box>
             <Flex
@@ -83,6 +85,9 @@ export default function WithSubnavigation() {
                     justify={'flex-end'}
                     direction={'row'}
                     spacing={6}>
+                    <Button onClick={toggleColorMode}>
+                        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                    </Button>
                     <Button
                         as={'a'}
                         fontSize={'sm'}
@@ -266,39 +271,7 @@ interface NavItem {
 }
 
 const NAV_ITEMS: Array<NavItem> = [
-    /*
-    {
-        label: 'Inspiration',
-        children: [
-            {
-                label: 'Explore Design Work',
-                subLabel: 'Trending Design to inspire you',
-                href: '#',
-            },
-            {
-                label: 'New & Noteworthy',
-                subLabel: 'Up-and-coming Designers',
-                href: '#',
-            },
-        ],
-    },
-    {
-        label: 'Find Work',
-        children: [
-            {
-                label: 'Job Board',
-                subLabel: 'Find your dream design job',
-                href: '#',
-            },
-            {
-                label: 'Freelance Projects',
-                subLabel: 'An exclusive list for contract work',
-                href: '#',
-            },
-        ],
-    },
 
-     */
     {
         label: 'Podcast',
         href: '/podcast',
