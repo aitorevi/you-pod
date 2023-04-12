@@ -1,6 +1,5 @@
 'use client';
-// @ts-ignore
-import { FormEvent, ChangeEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import {
     Stack,
     FormControl,
@@ -13,6 +12,7 @@ import {
     Flex,
 } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
+import { InsertEmailInDB } from "./insertEmail"
 
 export default function Simple() {
     const [email, setEmail] = useState('');
@@ -20,13 +20,16 @@ export default function Simple() {
         'initial'
     );
     const [error, setError] = useState(false);
+    const handleChange = (e: any) => {
+        setEmail(e.target.value);
+    };
 
     return (
         <Flex
             minH={'100vh'}
             align={'center'}
             justify={'center'}
-            bg={useColorModeValue('gray.50', 'gray.800')}>
+            bg={useColorModeValue('white', 'gray.800')}>
             <Container
                 maxW={'lg'}
                 bg={useColorModeValue('white', 'whiteAlpha.100')}
@@ -38,7 +41,7 @@ export default function Simple() {
                     fontSize={{ base: 'xl', sm: '2xl' }}
                     textAlign={'center'}
                     mb={5}>
-                    Subscribe to our Newsletter
+                    Newsletter
                 </Heading>
                 <Stack
                     direction={{ base: 'column', md: 'row' }}
@@ -50,12 +53,14 @@ export default function Simple() {
                         setState('submitting');
 
                         // remove this code and implement your submit logic right here
-                        setTimeout(() => {
+                        setTimeout(async () => {
                             if (email === 'fail@example.com') {
                                 setError(true);
                                 setState('initial');
                                 return;
                             }
+
+                            await InsertEmailInDB(email)
 
                             setState('success');
                         }, 1000);
@@ -72,22 +77,19 @@ export default function Simple() {
                             id={'email'}
                             type={'email'}
                             required
-                            placeholder={'Your Email'}
-                            aria-label={'Your Email'}
+                            placeholder={'Escribe tu email'}
+                            aria-label={'Escribe tu email'}
                             value={email}
                             disabled={state !== 'initial'}
-                            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                                setEmail(e.target.value)
-                            }
-                        />
+                            onChange={handleChange}/>
                     </FormControl>
                     <FormControl w={{ base: '100%', md: '40%' }}>
                         <Button
-                            colorScheme={state === 'success' ? 'green' : 'blue'}
+                            colorScheme={state === 'success' ? 'green' : 'purple'}
                             isLoading={state === 'submitting'}
                             w="100%"
                             type={state === 'success' ? 'button' : 'submit'}>
-                            {state === 'success' ? <CheckIcon /> : 'Submit'}
+                            {state === 'success' ? <CheckIcon /> : 'Suscribirse'}
                         </Button>
                     </FormControl>
                 </Stack>
@@ -97,7 +99,7 @@ export default function Simple() {
                     color={error ? 'red.500' : 'gray.500'}>
                     {error
                         ? 'Oh no an error occured! 😢 Please try again later.'
-                        : "You won't receive any spam! ✌️"}
+                        : "No recibirás nada de spam! ✌️"}
                 </Text>
             </Container>
         </Flex>

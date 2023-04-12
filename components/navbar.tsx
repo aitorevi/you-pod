@@ -66,7 +66,7 @@ export default function WithSubnavigation() {
                         <Link href={'/'}>
                             <Image
                                 className={styles.logo}
-                                src="/you-pod-text.svg"
+                                src="/you-pod-nav.svg"
                                 alt="You-Pod Logo"
                                 width={100}
                                 height={37}

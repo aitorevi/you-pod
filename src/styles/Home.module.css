@@ -105,6 +105,11 @@
   transform: translateZ(0);
 }
 
+.logo {
+  width: auto;
+  height: auto;
+}
+
 .logo,
 .youpod {
   position: relative;

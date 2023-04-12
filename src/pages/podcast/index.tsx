@@ -27,7 +27,6 @@ export default function Podcast() {
             const dataSnapshot = await getDocs(dataCollection);
             const podcastData = dataSnapshot.docs.map((doc) => doc.data() as PodcastData);
             setPodcastCollection(podcastData);
-            //podcastData.forEach((podcast) => console.log(podcast.title));
         };
         fetchData().then(r => {});
     }, []);
@@ -43,28 +42,16 @@ export default function Podcast() {
             <Nav/>
             <Box
                 minH={'100vh'}>
-                {/*<MyPlayer*/}
-                {/*    url={"https://www.carlosble.com/downloads/podcasts/e50.mp3"}*/}
-                {/*    title={"E50: ¿Cómo nos va a cambiar la inteligencia artificial?"}*/}
-                {/*    description={"Te comparto mis reflexiones sobre el futuro utópico o distópico que supone la IA para la humanidad. Te hablo de un episodio del podcast Your Undivided Attention, llamado The AI Dilemma, que me ha dado mucho que pensar, así como de otros podcasts y experiencias propias. La inteligencia artificial va a suponer un cambio mayor que la revolución industrial, y en menor tiempo."}*/}
-                {/*/>*/}
-                {/*<MyPlayer*/}
-                {/*    url={"https://www.carlosble.com/downloads/podcasts/e48.mp3"}*/}
-                {/*    title={"E48: Tres pilares de la profesionalidad, con Roberto Canales"}*/}
-                {/*    description={"Converso con Roberto Canales, CEO y co-fundador de Autentia, profesor en el IE, autor de múltiples libros. Roberto se define como eterno aprendiz. En esta conversación hablamos de los tres pilares: habilidades técnicas, no técnicas y valor entregado y percibido por el cliente. En la última parte de la conversación, también hablamos de la IA, cómo no."}*/}
-                {/*/>*/}
                 {podcastCollection.map((podcast) => {
                     return (
-                        <MyPlayer key={podcast.title.toString()} url={podcast.url} title={podcast.title} description={podcast.description}></MyPlayer>
+                        <MyPlayer key={podcast.title.toString()}
+                                  url={podcast.url}
+                                  title={podcast.title}
+                                  description={podcast.description}
+                        />
                     )
                 })}
-
             </Box>
-            {/*{[1, 2].map((p) => {*/}
-            {/*    return (*/}
-            {/*        <MyPlayer key={p.toString()} url={"h"} title={"h"} description={"h"}></MyPlayer>*/}
-            {/*    )*/}
-            {/*})}*/}
             <footer>
                 <SmallWithNavigation/>
             </footer>
