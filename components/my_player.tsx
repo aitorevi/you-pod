@@ -27,7 +27,7 @@ export const MyPlayer: React.FunctionComponent<MyPlayerProps> = ({url, title, de
                             src="/defaultImage.svg"
                             alt="Logo"
                             width={230}
-                            height={36}
+                            height={230}
                             priority
                         />
                     </div>
