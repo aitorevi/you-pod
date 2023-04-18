@@ -1,11 +1,8 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import {Inter} from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import Nav from '../../../components/navbar'
 import SmallWithNavigation from '../../../components/footer'
 import React from "react";
-import Link from "next/link";
 import SignupCard from "../../../components/sign_up";
 
 const inter = Inter({subsets: ['latin']})

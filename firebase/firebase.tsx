@@ -1,5 +1,7 @@
-import { getFirestore } from "firebase/firestore";
-import { initializeApp } from "firebase/app";
+import {getFirestore} from "firebase/firestore";
+import {initializeApp} from "firebase/app";
+import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+
 // TODO: Add SDKs for Firebase products that you want to use
 const firebaseConfig = {
     apiKey: "AIzaSyAIKVJumt-R3lLyBYyMhNcJEDwbIjt_wic",
@@ -12,4 +14,16 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+export const signInWithGoogle = () => {
+    signInWithPopup(auth, provider)
+        .then((result) => {
+            window.location.href = "/";
+            //console.log(result)
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+}
 export const db = getFirestore(app);

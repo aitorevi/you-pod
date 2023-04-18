@@ -5,9 +5,13 @@ import styles from '@/styles/Home.module.css'
 import Nav from '../../components/navbar'
 import SmallWithNavigation from '../../components/footer'
 import React from "react";
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from '../../firebase/firebase'
 
 const inter = Inter({subsets: ['latin']})
 export default function Home() {
+    const [user] = useAuthState(auth)
+    console.log(user)
     return (
         <>
             <Head>
@@ -18,6 +22,11 @@ export default function Home() {
             </Head>
             <Nav/>
             <div className={styles.center}>
+                {user ? (
+                    <p>Hola</p>
+                ) : (
+                    <p>Estas no logueado</p>
+                )}
                 <div className={styles.youpod}>
                     <Image
                         src="/you-pod-logo.svg"

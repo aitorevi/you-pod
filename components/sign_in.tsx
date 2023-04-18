@@ -12,6 +12,7 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import {signInWithGoogle} from "../firebase/firebase";
 
 export default function SimpleCard() {
     return (
@@ -24,7 +25,7 @@ export default function SimpleCard() {
                 <Stack align={'center'}>
                     <Heading fontSize={'4xl'}>Aquí letras degradadas</Heading>
                     <Text fontSize={'lg'} color={'gray.600'}>
-                        to enjoy all of our cool <Link color={'blue.400'}>features</Link> ✌️
+                        to enjoy all of our cool <Link color={'purple.600'}>features</Link> ✌️
                     </Text>
                 </Stack>
                 <Box
@@ -32,30 +33,38 @@ export default function SimpleCard() {
                     bg={useColorModeValue('white', 'gray.700')}
                     boxShadow={'lg'}
                     p={8}>
-                    <Stack spacing={4}>
+                    <Stack spacing={4}
+                        // creo que aquí va la logica del formulario
+                    >
                         <FormControl id="email">
                             <FormLabel>Email address</FormLabel>
-                            <Input type="email" />
+                            <Input type="email"/>
                         </FormControl>
                         <FormControl id="password">
                             <FormLabel>Password</FormLabel>
-                            <Input type="password" />
+                            <Input type="password"/>
                         </FormControl>
                         <Stack spacing={10}>
                             <Stack
-                                direction={{ base: 'column', sm: 'row' }}
+                                direction={{base: 'column', sm: 'row'}}
                                 align={'start'}
                                 justify={'space-between'}>
-                                <Checkbox>Remember me</Checkbox>
-                                <Link color={'blue.400'}>Forgot password?</Link>
+                                <Checkbox>Recordar</Checkbox>
+                                <Link color={'purple.600'}>Olvidaste el password?</Link>
                             </Stack>
                             <Button
-                                bg={'blue.400'}
+                                bg={'purple.500'}
                                 color={'white'}
                                 _hover={{
-                                    bg: 'blue.500',
+                                    bg: 'purple.600',
                                 }}>
-                                Color acorde a la web
+                                Ingresar
+                            </Button>
+                            <Button
+                                bg={'red'}
+                                color={'white'}
+                                onClick={signInWithGoogle}>
+                                Google
                             </Button>
                         </Stack>
                     </Stack>

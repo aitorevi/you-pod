@@ -5,8 +5,8 @@ import styles from '@/styles/Home.module.css'
 import Nav from '../../../components/navbar'
 import SmallWithNavigation from '../../../components/footer'
 import React from "react";
-import Link from "next/link";
 import SimpleCard from "../../../components/sign_in";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const inter = Inter({subsets: ['latin']})
 export default function Podcast() {
