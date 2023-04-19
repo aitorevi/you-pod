@@ -1,17 +1,16 @@
 import Head from 'next/head'
 import {Inter} from 'next/font/google'
 import Nav from '../../../components/navbar'
-import SmallWithNavigation from '../../../components/footer'
+import FooterSimple from '../../../components/footer'
 import React from "react";
-import {MyPlayer} from "../../../components/my_player";
-import {Box} from "@chakra-ui/react";
+import {PodcastList} from "../../../components/podcast_list";
+import {Box, useColorModeValue} from "@chakra-ui/react";
 
-import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../../firebase/firebase";
+import {useEffect, useState} from "react";
+import {collection, getDocs} from "firebase/firestore";
+import {db} from "../../../firebase/firebase";
 
 const inter = Inter({subsets: ['latin']})
-// export default function Podcast() {
 export default function Podcast() {
     interface PodcastData {
         url: string;
@@ -28,7 +27,8 @@ export default function Podcast() {
             const podcastData = dataSnapshot.docs.map((doc) => doc.data() as PodcastData);
             setPodcastCollection(podcastData);
         };
-        fetchData().then(r => {});
+        fetchData().then(r => {
+        });
     }, []);
 
     return (
@@ -41,19 +41,20 @@ export default function Podcast() {
             </Head>
             <Nav/>
             <Box
+                bg={useColorModeValue('gray.50', 'gray.800')}
                 minH={'100vh'}>
                 {podcastCollection.map((podcast) => {
                     return (
-                        <MyPlayer key={podcast.title.toString()}
-                                  url={podcast.url}
-                                  title={podcast.title}
-                                  description={podcast.description}
+                        <PodcastList key={podcast.title.toString()}
+                                     url={podcast.url}
+                                     title={podcast.title}
+                                     description={podcast.description}
                         />
                     )
                 })}
             </Box>
             <footer>
-                <SmallWithNavigation/>
+                <FooterSimple/>
             </footer>
         </>
     )

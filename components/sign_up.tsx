@@ -79,10 +79,10 @@ export default function SignupCard() {
                             <Button
                                 loadingText="Submitting"
                                 size="lg"
-                                bg={'blue.400'}
+                                bg={'purple.500'}
                                 color={'white'}
                                 _hover={{
-                                    bg: 'blue.500',
+                                    bg: 'purple.600',
                                 }}>
                                 Sign up
                             </Button>

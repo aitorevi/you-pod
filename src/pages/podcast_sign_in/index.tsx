@@ -3,7 +3,7 @@ import Image from 'next/image'
 import {Inter} from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Nav from '../../../components/navbar'
-import SmallWithNavigation from '../../../components/footer'
+import FooterSimple from '../../../components/footer'
 import React from "react";
 import Link from "next/link";
 
@@ -31,7 +31,7 @@ export default function Podcast() {
                 <Link href={'/'}>Inicio</Link>
             </div>
             <footer>
-                <SmallWithNavigation/>
+                <FooterSimple/>
             </footer>
         </>
     )

@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Grid, Stack} from "@chakra-ui/react";
+import {Container, Grid, Stack, useColorModeValue} from "@chakra-ui/react";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import {Text} from '@chakra-ui/react'
@@ -10,7 +10,7 @@ type MyPlayerProps = {
     title: string;
     description: string;
 }
-export const MyPlayer: React.FunctionComponent<MyPlayerProps> = ({url, title, description}) => {
+export const PodcastList: React.FunctionComponent<MyPlayerProps> = ({url, title, description}) => {
     return (
         <>
             <Container
@@ -20,7 +20,8 @@ export const MyPlayer: React.FunctionComponent<MyPlayerProps> = ({url, title, de
                 direction={{base: 'column', md: 'row'}}
                 spacing={{base: 4, md: 10}}
                 justify={{base: 'center', md: 'center'}}
-                align={{base: 'center', md: 'center'}}>
+                align={{base: 'center', md: 'center'}}
+                bg={useColorModeValue('gray.50', 'gray.800')}>
                 <Stack>
                     <div className={styles.youpod}>
                         <Image

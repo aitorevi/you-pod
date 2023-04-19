@@ -1,5 +1,5 @@
 'use client';
-import { FormEvent, useState } from 'react';
+import {FormEvent, useState} from 'react';
 import {
     Stack,
     FormControl,
@@ -11,10 +11,10 @@ import {
     Container,
     Flex,
 } from '@chakra-ui/react';
-import { CheckIcon } from '@chakra-ui/icons';
-import { InsertEmailInDB } from "./insertEmail"
+import {CheckIcon} from '@chakra-ui/icons';
+import {InsertEmailInDB} from "./insertEmail"
 
-export default function Simple() {
+export default function NewsletterForm() {
     const [email, setEmail] = useState('');
     const [state, setState] = useState<'initial' | 'submitting' | 'success'>(
         'initial'
@@ -29,7 +29,7 @@ export default function Simple() {
             minH={'100vh'}
             align={'center'}
             justify={'center'}
-            bg={useColorModeValue('white', 'gray.800')}>
+            bg={useColorModeValue('gray.50', 'gray.800')}>
             <Container
                 maxW={'lg'}
                 bg={useColorModeValue('white', 'whiteAlpha.100')}
@@ -38,13 +38,13 @@ export default function Simple() {
                 p={6}>
                 <Heading
                     as={'h2'}
-                    fontSize={{ base: 'xl', sm: '2xl' }}
+                    fontSize={{base: 'xl', sm: '2xl'}}
                     textAlign={'center'}
                     mb={5}>
                     Newsletter
                 </Heading>
                 <Stack
-                    direction={{ base: 'column', md: 'row' }}
+                    direction={{base: 'column', md: 'row'}}
                     as={'form'}
                     spacing={'12px'}
                     onSubmit={(e: FormEvent) => {
@@ -83,13 +83,13 @@ export default function Simple() {
                             disabled={state !== 'initial'}
                             onChange={handleChange}/>
                     </FormControl>
-                    <FormControl w={{ base: '100%', md: '40%' }}>
+                    <FormControl w={{base: '100%', md: '40%'}}>
                         <Button
                             colorScheme={state === 'success' ? 'green' : 'purple'}
                             isLoading={state === 'submitting'}
                             w="100%"
                             type={state === 'success' ? 'button' : 'submit'}>
-                            {state === 'success' ? <CheckIcon /> : 'Suscribirse'}
+                            {state === 'success' ? <CheckIcon/> : 'Suscribirse'}
                         </Button>
                     </FormControl>
                 </Stack>

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import {Inter} from 'next/font/google'
 import Nav from '../../../components/navbar'
-import SmallWithNavigation from '../../../components/footer'
+import FooterSimple from '../../../components/footer'
 import React from "react";
 import SignupCard from "../../../components/sign_up";
 
@@ -18,7 +18,7 @@ export default function Podcast() {
             <Nav/>
             <SignupCard/>
             <footer>
-                <SmallWithNavigation/>
+                <FooterSimple/>
             </footer>
         </>
     )

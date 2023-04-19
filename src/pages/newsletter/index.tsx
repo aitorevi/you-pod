@@ -1,15 +1,12 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import {Inter} from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import Nav from '../../../components/navbar'
-import SmallWithNavigation from '../../../components/footer'
+import FooterSimple from '../../../components/footer'
 import React from "react";
-import Link from "next/link";
-import Simple from "../../../components/newsletter_suscribe";
+import NewsletterForm from "../../../components/newsletter_suscribe";
 
 const inter = Inter({subsets: ['latin']})
-export default function Podcast() {
+export default function Newsletter() {
     return (
         <>
             <Head>
@@ -19,9 +16,9 @@ export default function Podcast() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Nav/>
-            <Simple/>
+            <NewsletterForm/>
             <footer>
-                <SmallWithNavigation/>
+                <FooterSimple/>
             </footer>
         </>
     )

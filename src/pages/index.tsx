@@ -1,12 +1,12 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import {Inter} from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import Nav from '../../components/navbar'
-import SmallWithNavigation from '../../components/footer'
+import FooterSimple from '../../components/footer'
 import React from "react";
-import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from '../../firebase/firebase'
+import {useAuthState} from 'react-firebase-hooks/auth'
+import {auth} from '../../firebase/firebase'
+import '../../firebase/firebase'
+import SignInPage from "../../components/sign_in";
 
 const inter = Inter({subsets: ['latin']})
 export default function Home() {
@@ -21,24 +21,9 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Nav/>
-            <div className={styles.center}>
-                {user ? (
-                    <p>Hola</p>
-                ) : (
-                    <p>Estas no logueado</p>
-                )}
-                <div className={styles.youpod}>
-                    <Image
-                        src="/you-pod-logo.svg"
-                        alt="Logo"
-                        width={130}
-                        height={36}
-                        priority
-                    />
-                </div>
-            </div>
+            <SignInPage/>
             <footer>
-                <SmallWithNavigation/>
+                <FooterSimple/>
             </footer>
         </>
     )

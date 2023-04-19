@@ -9,7 +9,7 @@ import {
     VisuallyHidden,
 } from '@chakra-ui/react';
 import React, {ReactNode} from 'react';
-import {FaInstagram, FaLinkedinIn, FaMedium, FaNewspaper, FaRegNewspaper, FaTwitter, FaYoutube} from "react-icons/fa";
+import {FaLinkedinIn, FaMedium, FaTwitter} from "react-icons/fa";
 
 const SocialButton = ({
                           children,
@@ -41,7 +41,7 @@ const SocialButton = ({
         </chakra.button>
     );
 };
-export default function SmallWithNavigation() {
+export default function FooterSimple() {
     return (
         <Box
             bg={useColorModeValue('gray.50', 'gray.900')}
@@ -62,13 +62,13 @@ export default function SmallWithNavigation() {
                 <Text>© 2023 You-Pod. All rights reserved</Text>
                 <Stack direction={'row'} spacing={6}>
                     <SocialButton label={'LinkedIn'} href={'https://linkedin.com/in/aitor-reviriego-amor'}>
-                        <FaLinkedinIn />
+                        <FaLinkedinIn/>
                     </SocialButton>
                     <SocialButton label={'Twitter'} href={'https://twitter.com/aitorevi'}>
-                        <FaTwitter />
+                        <FaTwitter/>
                     </SocialButton>
                     <SocialButton label={'Medium'} href={'https://medium.com/@aitorevi'}>
-                        <FaMedium />
+                        <FaMedium/>
                     </SocialButton>
                 </Stack>
             </Container>

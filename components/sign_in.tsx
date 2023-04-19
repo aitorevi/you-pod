@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import {signInWithGoogle} from "../firebase/firebase";
 
-export default function SimpleCard() {
+export default function SignInPage() {
     return (
         <Flex
             minH={'100vh'}

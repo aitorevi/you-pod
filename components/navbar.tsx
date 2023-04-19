@@ -28,7 +28,6 @@ import {
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import React from "react";
-import {auth, signInWithGoogle} from "../firebase/firebase";
 
 export default function WithSubnavigation() {
     const {isOpen, onToggle} = useDisclosure();
@@ -89,23 +88,15 @@ export default function WithSubnavigation() {
                     <Button onClick={toggleColorMode}>
                         {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
                     </Button>
-                    <Button
-                        as={'a'}
-                        fontSize={'sm'}
-                        fontWeight={400}
-                        variant={'link'}
-                        href={'sign_in'}>
-                        Sign In
-                    </Button>
-                    <Button
-                        onClick={() => auth.signOut()}
-                        as={'a'}
-                        fontSize={'sm'}
-                        fontWeight={400}
-                        variant={'link'}
-                        href={'sign_in'}>
-                        Adios
-                    </Button>
+                    {/*<Button*/}
+                    {/*    onClick={() => auth.signOut()}*/}
+                    {/*    as={'a'}*/}
+                    {/*    fontSize={'sm'}*/}
+                    {/*    fontWeight={400}*/}
+                    {/*    variant={'link'}*/}
+                    {/*    href={'sign_in'}>*/}
+                    {/*    Adios*/}
+                    {/*</Button>*/}
                     <Button
                         as={'a'}
                         display={{base: 'none', md: 'inline-flex'}}
@@ -288,6 +279,6 @@ const NAV_ITEMS: Array<NavItem> = [
     },
     {
         label: 'Newsletter',
-        href: 'newsletter',
+        href: '/newsletter',
     },
 ];
