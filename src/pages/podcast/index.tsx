@@ -7,7 +7,7 @@ import {PodcastList} from "../../../components/podcast_list";
 import {Box, useColorModeValue} from "@chakra-ui/react";
 
 import {useEffect, useState} from "react";
-import {collection, getDocs} from "firebase/firestore";
+import {collection, getDocs, orderBy, query} from "firebase/firestore";
 import {db} from "../../../firebase/firebase";
 
 const inter = Inter({subsets: ['latin']})
@@ -22,10 +22,9 @@ export default function Podcast() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const dataCollection = collection(db, "podcast");
-            const dataSnapshot = await getDocs(dataCollection);
+            const dataSnapshot = await getDocs(query(collection(db, "podcast"), orderBy("createAt", "desc")));
             const podcastData = dataSnapshot.docs.map((doc) => doc.data() as PodcastData);
-            setPodcastCollection(podcastData);
+            await setPodcastCollection(podcastData);
         };
         fetchData().then(r => {
         });
@@ -43,7 +42,8 @@ export default function Podcast() {
             <Box
                 bg={useColorModeValue('gray.50', 'gray.800')}
                 minH={'100vh'}>
-                {podcastCollection.map((podcast) => {
+                {
+                    podcastCollection.map((podcast) => {
                     return (
                         <PodcastList key={podcast.title.toString()}
                                      url={podcast.url}

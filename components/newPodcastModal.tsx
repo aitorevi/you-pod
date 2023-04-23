@@ -7,15 +7,19 @@ import {
     ModalCloseButton, Button, useDisclosure, FormControl, FormLabel, Input, useColorModeValue, Textarea, Stack,
 } from '@chakra-ui/react'
 import React, {FormEvent, useState} from "react";
-import {CreatePodcastInDB} from "./crudPodcast";
 import {CheckIcon} from "@chakra-ui/icons";
-
-export function InitialFocus() {
+import {doc, setDoc} from "firebase/firestore";
+import {db} from "../firebase/firebase";
+type MyModalProps = {
+    readPodcast: any;
+}
+export const InitialFocus: React.FunctionComponent<MyModalProps> = ({readPodcast}) => {
     const {isOpen, onOpen, onClose} = useDisclosure()
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [url, setUrl] = useState("");
+    // const [newPodcast, setNewPodcast] = useState(null)
     const [state, setState] = useState<'initial' | 'submitting' | 'success'>(
         'initial'
     );
@@ -30,23 +34,31 @@ export function InitialFocus() {
         setUrl(e.target.value);
     };
 
+    const CreatePodcastInDB = async (title: string, description: string, url: string) => {
+        const idCollection = title;
+        await setDoc(doc(db, "podcast", idCollection), {
+            title: title,
+            description: description,
+            url: url,
+            createAt: Date(),
+        });
+    }
     const createPodcast = (e: FormEvent) => {
         e.preventDefault();
         setTimeout(async () => {
-
             await CreatePodcastInDB(title, description, url)
-
             setState('success');
+
         }, 400);
         setTimeout(async () => {
+            setTitle("");
+            setDescription("");
+            setUrl("");
+            setState('initial');
             onClose();
-            window.location.reload()
-        }, 1500);
+            readPodcast();
+        }, 1000);
     }
-
-    // function handleSubmit(e: any) {
-    //     e.preventDefault();
-    // }
 
     return (
         <>
@@ -77,9 +89,7 @@ export function InitialFocus() {
                             as={'form'}
                             spacing={'12px'}
                             onSubmit={createPodcast}>
-                            <FormControl
-                                // onSubmit={handleSubmit}
-                            >
+                            <FormControl>
                                 <FormLabel>Titulo</FormLabel>
                                 <Input
                                     id={'title'}

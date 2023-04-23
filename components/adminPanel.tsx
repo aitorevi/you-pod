@@ -2,14 +2,15 @@ import React from "react";
 import {useState, useEffect} from "react";
 import {Button, Container, Stack, useColorModeValue} from "@chakra-ui/react";
 import {Heading} from '@chakra-ui/react'
-import {DeletePodcastInDB, UpdatePodcastInDB} from "./crudPodcast";
+import {UpdatePodcastInDB} from "./crudPodcast";
 
 type MyPodcastProps = {
     url: string;
     title: string;
     description: string;
+    deletePodcast: any;
 }
-export const AdminPanel: React.FunctionComponent<MyPodcastProps> = ({url, title, description}) => {
+export const AdminPanel: React.FunctionComponent<MyPodcastProps> = ({url, title, description, deletePodcast}) => {
 
     // const [podcastList, setPodcastList] = useState("");
     //
@@ -60,7 +61,7 @@ export const AdminPanel: React.FunctionComponent<MyPodcastProps> = ({url, title,
                     <Stack
                         minW='75px'>
                         <Button
-                            onClick={() => {DeletePodcastInDB(id)}}
+                            onClick={() => {deletePodcast(id)}}
                             bg={useColorModeValue('red.300', 'red.400')}
                             _hover={{
                                 bg: 'red.500',

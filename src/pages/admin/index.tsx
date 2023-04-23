@@ -9,46 +9,27 @@ import {Box,Container, Stack, useColorModeValue} from "@chakra-ui/react";
 import {useEffect, useState} from "react";
 import {AdminPanel} from "../../../components/adminPanel";
 import {InitialFocus} from "../../../components/newPodcastModal";
-import {ReadPodcastInDB} from "../../../components/crudPodcast";
-import {BUILD_ID_FILE} from "next/constants";
-import {deleteDoc, doc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs, orderBy, query, setDoc} from "firebase/firestore";
 import {db} from "../../../firebase/firebase";
 
 const inter = Inter({subsets: ['latin']})
 export default function Podcast() {
-    // interface PodcastData {
-    //     url: string;
-    //     description: string;
-    //     title: string;
-    // }
-
-    // const [podcastCollection, setPodcastCollection] = useState<PodcastData[]>([]);
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const dataCollection = collection(db, "podcast");
-    //         const dataSnapshot = await getDocs(dataCollection);
-    //         const podcastData = dataSnapshot.docs.map((doc) => doc.data() as PodcastData);
-    //         setPodcastCollection(podcastData);
-    //     };
-    //     fetchData().then(r => {
-    //     });
-    // }, []);
+    const [podcastList, setPodcastList] = useState(null);
+    const ReadPodcastInDB = async () => {
+        const result = await getDocs(query(collection(db, "podcast"), orderBy("createAt", "desc")));
+        return result;
+    }
     const DeletePodcastInDB = async (id: string) => {
         {
             await deleteDoc(doc(db, "podcast", id));
-            setTimeout(async () => {
-                //   window.location.reload()
-                readPodcast();
-            }, 500);
-
+            await readPodcast();
         }
     }
-
-    const [podcastList, setPodcastList] = useState(null);
-
+    const deletePodcast = async (id: string) => {
+        await DeletePodcastInDB(id)
+    }
     useEffect(() =>  {
-        readPodcast();
+        readPodcast().then(r => r);
     },[])
     const readPodcast = async () => {
         const podcasts = await ReadPodcastInDB();
@@ -99,12 +80,13 @@ export default function Podcast() {
                             align={{base: 'start', md: 'start'}}
                             bg={useColorModeValue('gray.50', 'gray.800')}
                             borderRadius={6}>
-                            <InitialFocus/>
+                            <InitialFocus readPodcast={readPodcast}/>
                         </Container>
                         {
                             podcastList && podcastList.map( podcast => {
                                 return (
-                                    <AdminPanel key={podcast.data().title}
+                                    <AdminPanel deletePodcast={deletePodcast}
+                                                key={podcast.data().title}
                                                 url={podcast.data().url}
                                                 title={podcast.data().title}
                                                 description={podcast.data().description}
@@ -113,7 +95,6 @@ export default function Podcast() {
                             })
                         }
                     </Stack>
-                    <Button onClick={readPodcast}>Reload</Button>
                 </Box>
             </Container>
             <footer>
