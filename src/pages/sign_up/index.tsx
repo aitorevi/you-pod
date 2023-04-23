@@ -3,7 +3,7 @@ import {Inter} from 'next/font/google'
 import Nav from '../../../components/navbar'
 import FooterSimple from '../../../components/footer'
 import React from "react";
-import SignupCard from "../../../components/sign_up";
+import SignupForm from "../../../components/sign_up";
 
 const inter = Inter({subsets: ['latin']})
 export default function Podcast() {
@@ -16,7 +16,7 @@ export default function Podcast() {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Nav/>
-            <SignupCard/>
+            <SignupForm/>
             <footer>
                 <FooterSimple/>
             </footer>

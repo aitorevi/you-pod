@@ -12,7 +12,7 @@ import {
     Flex,
 } from '@chakra-ui/react';
 import {CheckIcon} from '@chakra-ui/icons';
-import {InsertEmailInDB} from "./insertEmail"
+import {InsertNewsletterEmailInDB} from "./insertNewsletter"
 
 export default function NewsletterForm() {
     const [email, setEmail] = useState('');
@@ -60,7 +60,7 @@ export default function NewsletterForm() {
                                 return;
                             }
 
-                            await InsertEmailInDB(email)
+                            await InsertNewsletterEmailInDB(email)
 
                             setState('success');
                         }, 1000);

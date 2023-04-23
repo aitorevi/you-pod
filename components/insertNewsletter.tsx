@@ -1,6 +1,6 @@
 import {addDoc, collection} from "firebase/firestore";
 import {db} from "../firebase/firebase";
-export const InsertEmailInDB = async (email: string) => {
+export const InsertNewsletterEmailInDB = async (email: string) => {
     {
         const [docRef] = await Promise.all([addDoc(collection(db, "newsletter"), {
             email: email

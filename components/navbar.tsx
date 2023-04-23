@@ -88,15 +88,6 @@ export default function WithSubnavigation() {
                     <Button onClick={toggleColorMode}>
                         {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
                     </Button>
-                    {/*<Button*/}
-                    {/*    onClick={() => auth.signOut()}*/}
-                    {/*    as={'a'}*/}
-                    {/*    fontSize={'sm'}*/}
-                    {/*    fontWeight={400}*/}
-                    {/*    variant={'link'}*/}
-                    {/*    href={'sign_in'}>*/}
-                    {/*    Adios*/}
-                    {/*</Button>*/}
                     <Button
                         as={'a'}
                         display={{base: 'none', md: 'inline-flex'}}
