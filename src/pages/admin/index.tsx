@@ -4,12 +4,12 @@ import Nav from '../../../components/navbar'
 import FooterSimple from '../../../components/footer'
 import React from "react";
 import {Button, Heading} from '@chakra-ui/react'
-import {Box,Container, Stack, useColorModeValue} from "@chakra-ui/react";
+import {Box, Container, Stack, useColorModeValue} from "@chakra-ui/react";
 
 import {useEffect, useState} from "react";
 import {AdminPanel} from "../../../components/adminPanel";
-import {InitialFocus} from "../../../components/newPodcastModal";
-import {collection, deleteDoc, doc, getDocs, orderBy, query, setDoc} from "firebase/firestore";
+import {CreateModal} from "../../../components/createModal";
+import {collection, deleteDoc, doc, getDocs, orderBy, query, setDoc, updateDoc} from "firebase/firestore";
 import {db} from "../../../firebase/firebase";
 
 const inter = Inter({subsets: ['latin']})
@@ -28,14 +28,23 @@ export default function Podcast() {
     const deletePodcast = async (id: string) => {
         await DeletePodcastInDB(id)
     }
-    useEffect(() =>  {
+    // const UpdatePodcastInDB = async (id: string, title: string, description: string, url: string) => {
+    //     {
+    //         await updateDoc(doc(db, "podcast", id), {title, description, url});
+    //         await readPodcast();
+    //     }
+    // }
+    // const updatePodcast = async (id: string, title: string, description: string, url: string) => {
+    //     await UpdatePodcastInDB(id, title, description, url)
+    // }
+    useEffect(() => {
         readPodcast().then(r => r);
-    },[])
+    }, [])
     const readPodcast = async () => {
         const podcasts = await ReadPodcastInDB();
+        // @ts-ignore
         setPodcastList(podcasts.docs);
     }
-
     return (
         <>
             <Head>
@@ -56,7 +65,6 @@ export default function Podcast() {
                         <Container
                             as={Stack}
                             maxW={'6xl'}
-                            //py={1}
                             marginTop='0.5rem'
                             direction={{base: 'column', md: 'row'}}
                             spacing={{base: 4, md: 10}}
@@ -72,25 +80,27 @@ export default function Podcast() {
                         <Container
                             as={Stack}
                             maxW={'6xl'}
-                            //py={1}
                             marginTop='0.5rem'
+                            paddingY={2}
                             direction={{base: 'column', md: 'row'}}
                             spacing={{base: 4, md: 10}}
                             justify={{base: 'space-between', md: 'space-between'}}
                             align={{base: 'start', md: 'start'}}
                             bg={useColorModeValue('gray.50', 'gray.800')}
                             borderRadius={6}>
-                            <InitialFocus readPodcast={readPodcast}/>
+                            <CreateModal
+                                readPodcast={readPodcast}/>
                         </Container>
                         {
-                            podcastList && podcastList.map( podcast => {
+                            podcastList && podcastList.map(podcast => {
                                 return (
-                                    <AdminPanel deletePodcast={deletePodcast}
-                                                key={podcast.data().title}
+                                    <AdminPanel readPodcast={readPodcast}
+                                                deletePodcast={deletePodcast}
+                                                key={podcast.id}
+                                                id={podcast.id}
                                                 url={podcast.data().url}
                                                 title={podcast.data().title}
-                                                description={podcast.data().description}
-                                    />
+                                                description={podcast.data().description}/>
                                 )
                             })
                         }

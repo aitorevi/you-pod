@@ -8,24 +8,35 @@ import {
 } from '@chakra-ui/react'
 import React, {FormEvent, useState} from "react";
 import {CheckIcon} from "@chakra-ui/icons";
-import {doc, setDoc} from "firebase/firestore";
+import {doc, setDoc, updateDoc} from "firebase/firestore";
 import {db} from "../firebase/firebase";
+
 type MyModalProps = {
     readPodcast: any;
+    id: any;
+    oldTitle: string;
+    oldDescription: string;
+    oldUrl: string;
 }
-export const InitialFocus: React.FunctionComponent<MyModalProps> = ({readPodcast}) => {
+export const UpdateModal:
+    React.FunctionComponent<MyModalProps> = ({
+                                                 readPodcast,
+                                                 id,
+                                                 oldTitle,
+                                                 oldDescription,
+                                                 oldUrl,
+                                             }) => {
     const {isOpen, onOpen, onClose} = useDisclosure()
 
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("");
-    const [url, setUrl] = useState("");
-    // const [newPodcast, setNewPodcast] = useState(null)
+    const [title, setTitle] = useState(oldTitle);
+    const [description, setDescription] = useState(oldDescription);
+    const [url, setUrl] = useState(oldUrl);
     const [state, setState] = useState<'initial' | 'submitting' | 'success'>(
         'initial'
     );
 
     const handleChangeTitle = async (e: any) => {
-        setTitle(e.target.value);
+        await setTitle(e.target.value);
     };
     const handleChangeDescription = async (e: any) => {
         setDescription(e.target.value);
@@ -33,43 +44,35 @@ export const InitialFocus: React.FunctionComponent<MyModalProps> = ({readPodcast
     const handleChangeUrl = async (e: any) => {
         setUrl(e.target.value);
     };
-
-    const CreatePodcastInDB = async (title: string, description: string, url: string) => {
-        const idCollection = title;
-        await setDoc(doc(db, "podcast", idCollection), {
-            title: title,
-            description: description,
-            url: url,
-            createAt: Date(),
-        });
+    const UpdatePodcastInDB = async (id: string, title: string, description: string, url: string) => {
+        {
+            await updateDoc(doc(db, "podcast", id), {title, description, url});
+            readPodcast();
+        }
     }
-    const createPodcast = (e: FormEvent) => {
+    const updatePodcast = (e: FormEvent) => {
         e.preventDefault();
         setTimeout(async () => {
-            await CreatePodcastInDB(title, description, url)
+            await UpdatePodcastInDB(id, title, description, url)
             setState('success');
 
         }, 400);
         setTimeout(async () => {
-            setTitle("");
-            setDescription("");
-            setUrl("");
-            setState('initial');
             onClose();
+            setState('initial');
+
             readPodcast();
         }, 1000);
     }
-
     return (
         <>
             <Button onClick={onOpen}
                     minW='75px'
-                    bg={useColorModeValue('green.300', 'green.400')}
+                    bg={useColorModeValue("orange.300", "orange.400")}
                     _hover={{
-                        bg: 'green.500',
-                    }}
-                    marginY={2}>
-                Nuevo
+                        bg: "orange.500",
+                    }}>
+                Editar
             </Button>
 
             <Modal
@@ -81,14 +84,15 @@ export const InitialFocus: React.FunctionComponent<MyModalProps> = ({readPodcast
                     <ModalHeader
                         mt={2}
                         textAlign={'center'}>
-                        Crea un nuevo podcast ✌️
+                        edita tu nuevo podcast ✌️
                     </ModalHeader>
                     <ModalCloseButton/>
                     <ModalBody pb={6}>
                         <Stack
                             as={'form'}
                             spacing={'12px'}
-                            onSubmit={createPodcast}>
+                            onSubmit={updatePodcast}
+                        >
                             <FormControl>
                                 <FormLabel>Titulo</FormLabel>
                                 <Input
@@ -118,7 +122,7 @@ export const InitialFocus: React.FunctionComponent<MyModalProps> = ({readPodcast
                                 <FormLabel>Url</FormLabel>
                                 <Input
                                     id={'url'}
-                                    type={'text'}
+                                    type={'url'}
                                     placeholder='Url'
                                     value={url}
                                     required
@@ -132,13 +136,10 @@ export const InitialFocus: React.FunctionComponent<MyModalProps> = ({readPodcast
                                 w="100%"
                                 type={state === 'success' ? 'button' : 'submit'}>
                                 {state === 'success' ? <CheckIcon/> : 'Guardar'}
-
                             </Button>
                             <Button onClick={onClose}>Cancelar</Button>
                         </Stack>
                     </ModalBody>
-
-
                 </ModalContent>
             </Modal>
         </>

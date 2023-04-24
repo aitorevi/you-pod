@@ -21,7 +21,7 @@ import {useState} from "react";
 //     const result = await getDocs(query(collection(db, "podcast")));
 //     return result;
 // }
-export const UpdatePodcastInDB = async (id: string) => {
+const UpdatePodcastInDB = async (id: string) => {
     {
         const docRef = await deleteDoc(doc(db, "podcast", id));
         setTimeout(async () => {
