@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import React, {FormEvent, useState} from "react";
 import {CheckIcon} from "@chakra-ui/icons";
-import {doc, setDoc, updateDoc} from "firebase/firestore";
+import {doc, updateDoc} from "firebase/firestore";
 import {db} from "../firebase/firebase";
 
 type MyModalProps = {
