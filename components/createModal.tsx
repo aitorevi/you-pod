@@ -1,14 +1,22 @@
 import {
+    Button,
+    FormControl,
+    FormLabel,
+    Input,
     Modal,
-    ModalOverlay,
+    ModalBody,
+    ModalCloseButton,
     ModalContent,
     ModalHeader,
-    ModalBody,
-    ModalCloseButton, Button, useDisclosure, FormControl, FormLabel, Input, useColorModeValue, Textarea, Stack,
+    ModalOverlay,
+    Stack,
+    Textarea,
+    useColorModeValue,
+    useDisclosure,
 } from '@chakra-ui/react'
 import React, {FormEvent, useState} from "react";
 import {CheckIcon} from "@chakra-ui/icons";
-import {doc, setDoc} from "firebase/firestore";
+import {addDoc, collection} from "firebase/firestore";
 import {db} from "../firebase/firebase";
 
 type MyModalProps = {
@@ -37,13 +45,13 @@ export const CreateModal:
         setUrl(e.target.value);
     };
     const CreatePodcastInDB = async (title: string, description: string, url: string) => {
-        const idCollection = title;
-        await setDoc(doc(db, "podcast", idCollection), {
+        const [docRef] = await Promise.all([addDoc(collection(db, "podcast"), {
             title: title,
             description: description,
             url: url,
             createAt: Date(),
-        });
+        })]);
+        console.log(docRef.id)
     }
     const createPodcast = (e: FormEvent) => {
         e.preventDefault();

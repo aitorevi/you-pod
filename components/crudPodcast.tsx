@@ -1,41 +1,20 @@
-import {collection, deleteDoc, doc, getDocs, query, setDoc} from "firebase/firestore";
-import {db} from "../firebase/firebase";
-import {useState} from "react";
-
-// export const CreatePodcastInDB = async (title: string, description: string, url: string) => {
-//     // Guarda sin ID el documento, lo genera Firebase
-//     //     const [docRef] = await Promise.all([addDoc(collection(db, "podcast"), {
-//     //         title: title
-//     //     })]);
-//     //     console.log(docRef.id)
-//
-//     // Guarda con el ID "AI" el documento
-//     const idCollection = title;
-//     await setDoc(doc(db, "podcast", idCollection), {
+// Guarda el documento sin Id y Firebase le asigna uno automáticamente
+// const CreatePodcastInDB = async (title: string, description: string, url: string) => {
+//     const [docRef] = await Promise.all([addDoc(collection(db, "podcast"), {
 //         title: title,
 //         description: description,
-//         url: url
-//     });
+//         url: url,
+//         createAt: Date(),
+//     })]);
+//     console.log(docRef.id)
 // }
-// export const ReadPodcastInDB = async () => {
-//     const result = await getDocs(query(collection(db, "podcast")));
-//     return result;
-// }
-const UpdatePodcastInDB = async (id: string) => {
-    {
-        const docRef = await deleteDoc(doc(db, "podcast", id));
-        setTimeout(async () => {
-            window.location.reload()
-        }, 500);
 
-    }
-}
-// export const DeletePodcastInDB = async (id: string) => {
-//     {
-//         await deleteDoc(doc(db, "podcast", id));
-//         setTimeout(async () => {
-//          //   window.location.reload()
-//         }, 500);
-//
-//     }
+// Guarda el documento con el Id deseado el documento
+// const CreatePodcastInDB = async (id: string, title: string, description: string, url: string) => {
+//     await setDoc(doc(db, "podcast", id), {
+//         title: title,
+//         description: description,
+//         url: url,
+//         createAt: Date(),
+//     });
 // }

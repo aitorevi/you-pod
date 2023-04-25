@@ -44,14 +44,14 @@ export default function Podcast() {
                 minH={'100vh'}>
                 {
                     podcastCollection.map((podcast) => {
-                    return (
-                        <PodcastList key={podcast.title.toString()}
-                                     url={podcast.url}
-                                     title={podcast.title}
-                                     description={podcast.description}
-                        />
-                    )
-                })}
+                        return (
+                            <PodcastList key={podcast.title.toString()}
+                                         url={podcast.url}
+                                         title={podcast.title}
+                                         description={podcast.description}
+                            />
+                        )
+                    })}
             </Box>
             <footer>
                 <FooterSimple/>

@@ -24,15 +24,6 @@ export default function Podcast() {
     const deletePodcast = async (id: string) => {
         await DeletePodcastInDB(id)
     }
-    // const UpdatePodcastInDB = async (id: string, title: string, description: string, url: string) => {
-    //     {
-    //         await updateDoc(doc(db, "podcast", id), {title, description, url});
-    //         await readPodcast();
-    //     }
-    // }
-    // const updatePodcast = async (id: string, title: string, description: string, url: string) => {
-    //     await UpdatePodcastInDB(id, title, description, url)
-    // }
     useEffect(() => {
         readPodcast().then(r => r);
     }, [])
@@ -89,6 +80,7 @@ export default function Podcast() {
                         {
                             podcastList && podcastList.map(podcast => {
                                 return (
+
                                     <AdminPanel readPodcast={readPodcast}
                                                 deletePodcast={deletePodcast}
                                                 key={podcast.id}
