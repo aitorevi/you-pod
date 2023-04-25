@@ -2,22 +2,18 @@ import Head from 'next/head'
 import {Inter} from 'next/font/google'
 import Nav from '../../../components/navbar'
 import FooterSimple from '../../../components/footer'
-import React from "react";
-import {Button, Heading} from '@chakra-ui/react'
-import {Box, Container, Stack, useColorModeValue} from "@chakra-ui/react";
-
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {Box, Container, Heading, Stack, useColorModeValue} from '@chakra-ui/react'
 import {AdminPanel} from "../../../components/adminPanel";
 import {CreateModal} from "../../../components/createModal";
-import {collection, deleteDoc, doc, getDocs, orderBy, query, setDoc, updateDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getDocs, orderBy, query} from "firebase/firestore";
 import {db} from "../../../firebase/firebase";
 
 const inter = Inter({subsets: ['latin']})
 export default function Podcast() {
-    const [podcastList, setPodcastList] = useState(null);
+    const [podcastList, setPodcastList] = useState<any[]>([]);
     const ReadPodcastInDB = async () => {
-        const result = await getDocs(query(collection(db, "podcast"), orderBy("createAt", "desc")));
-        return result;
+        return await getDocs(query(collection(db, "podcast"), orderBy("createAt", "desc")));
     }
     const DeletePodcastInDB = async (id: string) => {
         {
@@ -42,7 +38,6 @@ export default function Podcast() {
     }, [])
     const readPodcast = async () => {
         const podcasts = await ReadPodcastInDB();
-        // @ts-ignore
         setPodcastList(podcasts.docs);
     }
     return (
