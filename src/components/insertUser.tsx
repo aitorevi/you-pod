@@ -1,5 +1,5 @@
 import {addDoc, collection} from "firebase/firestore";
-import {db} from "../firebase/firebase";
+import {db} from "@/firebase/firebase";
 
 export const InsertUserInDB = async (firstName: string, lastName: string, email: string, password: string) => {
     {

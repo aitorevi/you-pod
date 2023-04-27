@@ -12,7 +12,7 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import {signInWithGoogle} from "../firebase/firebase";
+import {signInWithGoogle} from "@/firebase/firebase";
 
 export default function SignInPage() {
     return (
