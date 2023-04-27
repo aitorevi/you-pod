@@ -1,11 +1,10 @@
 import Head from 'next/head'
 import {Inter} from 'next/font/google'
-import Nav from '../../../components/navbar'
-import FooterSimple from '../../../components/footer'
+import Nav from '../../components/navbar'
+import FooterSimple from '../../components/footer'
 import React from "react";
-import SignupForm from "../../../components/sign_up";
-
-const inter = Inter({subsets: ['latin']})
+import SignupForm from "../../components/sign_up";
+Inter({subsets: ['latin']});
 export default function Podcast() {
     return (
         <>

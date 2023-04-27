@@ -1,15 +1,12 @@
 import Head from 'next/head'
-import {Inter} from 'next/font/google'
-import Nav from '../../../components/navbar'
-import FooterSimple from '../../../components/footer'
+import Nav from '../../components/navbar'
+import FooterSimple from '../../components/footer'
 import React, {useEffect, useState} from "react";
 import {Box, Container, Heading, Stack, useColorModeValue} from '@chakra-ui/react'
-import {AdminPanel} from "../../../components/adminPanel";
-import {CreateModal} from "../../../components/createModal";
+import {AdminPanel} from "@/components/adminPanel";
+import {CreatePodcastModal} from "@/components/crud/modals/createPodcastModal";
 import {collection, deleteDoc, doc, getDocs, orderBy, query} from "firebase/firestore";
-import {db} from "../../../firebase/firebase";
-
-const inter = Inter({subsets: ['latin']})
+import {db} from "@/firebase/firebase";
 export default function Podcast() {
     const [podcastList, setPodcastList] = useState<any[]>([]);
     const ReadPodcastInDB = async () => {
@@ -26,7 +23,7 @@ export default function Podcast() {
     }
     useEffect(() => {
         readPodcast().then(r => r);
-    }, [])
+    }, )
     const readPodcast = async () => {
         const podcasts = await ReadPodcastInDB();
         setPodcastList(podcasts.docs);
@@ -74,7 +71,7 @@ export default function Podcast() {
                             align={{base: 'start', md: 'start'}}
                             bg={useColorModeValue('gray.50', 'gray.800')}
                             borderRadius={6}>
-                            <CreateModal
+                            <CreatePodcastModal
                                 readPodcast={readPodcast}/>
                         </Container>
                         {

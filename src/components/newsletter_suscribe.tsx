@@ -12,7 +12,8 @@ import {
     Flex,
 } from '@chakra-ui/react';
 import {CheckIcon} from '@chakra-ui/icons';
-import {InsertNewsletterEmailInDB} from "./insertNewsletter"
+import {addDoc, collection} from "firebase/firestore";
+import {db} from "@/firebase/firebase";
 
 export default function NewsletterForm() {
     const [email, setEmail] = useState('');
@@ -23,6 +24,15 @@ export default function NewsletterForm() {
     const handleChange = (e: any) => {
         setEmail(e.target.value);
     };
+    const InsertNewsletterEmailInDB = async (email: string) => {
+        {
+            const [docRef] = await Promise.all([addDoc(collection(db, "newsletter"), {
+                email: email
+            })]);
+            console.log("Document written with ID: ", docRef.id);
+
+        }
+    }
 
     return (
         <Flex

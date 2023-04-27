@@ -1,16 +1,14 @@
 import Head from 'next/head'
-import {Inter} from 'next/font/google'
-import Nav from '../../../components/navbar'
-import FooterSimple from '../../../components/footer'
+import Nav from '../../components/navbar'
+import FooterSimple from '../../components/footer'
 import React from "react";
-import {PodcastList} from "../../../components/podcast_list";
+import {PodcastList} from "@/components/podcast_list";
 import {Box, useColorModeValue} from "@chakra-ui/react";
 
 import {useEffect, useState} from "react";
 import {collection, getDocs, orderBy, query} from "firebase/firestore";
-import {db} from "../../../firebase/firebase";
+import {db} from "@/firebase/firebase";
 
-const inter = Inter({subsets: ['latin']})
 export default function Podcast() {
     interface PodcastData {
         url: string;
@@ -26,8 +24,7 @@ export default function Podcast() {
             const podcastData = dataSnapshot.docs.map((doc) => doc.data() as PodcastData);
             await setPodcastCollection(podcastData);
         };
-        fetchData().then(r => {
-        });
+        fetchData().then(r => r);
     }, []);
 
     return (

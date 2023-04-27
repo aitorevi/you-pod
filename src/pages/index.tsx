@@ -1,14 +1,11 @@
 import Head from 'next/head'
-import {Inter} from 'next/font/google'
-import Nav from '../../components/navbar'
-import FooterSimple from '../../components/footer'
+import Nav from '../components/navbar'
+import FooterSimple from '../components/footer'
 import React from "react";
 import {useAuthState} from 'react-firebase-hooks/auth'
-import {auth} from '../../firebase/firebase'
-import '../../firebase/firebase'
-import SignInPage from "../../components/sign_in";
-
-const inter = Inter({subsets: ['latin']})
+import {auth} from '@/firebase/firebase'
+import '../firebase/firebase'
+import SignInPage from "../components/sign_in";
 export default function Home() {
     const [user] = useAuthState(auth)
     console.log(user)

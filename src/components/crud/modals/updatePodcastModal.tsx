@@ -9,7 +9,7 @@ import {
 import React, {FormEvent, useState} from "react";
 import {CheckIcon} from "@chakra-ui/icons";
 import {doc, updateDoc} from "firebase/firestore";
-import {db} from "../firebase/firebase";
+import {db} from "@/firebase/firebase";
 
 type MyModalProps = {
     readPodcast: any;

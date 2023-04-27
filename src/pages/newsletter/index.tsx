@@ -1,11 +1,9 @@
 import Head from 'next/head'
-import {Inter} from 'next/font/google'
-import Nav from '../../../components/navbar'
-import FooterSimple from '../../../components/footer'
+import Nav from '../../components/navbar'
+import FooterSimple from '../../components/footer'
 import React from "react";
-import NewsletterForm from "../../../components/newsletter_suscribe";
+import NewsletterForm from "../../components/newsletter_suscribe";
 
-const inter = Inter({subsets: ['latin']})
 export default function Newsletter() {
     return (
         <>

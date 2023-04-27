@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Container, Stack, useColorModeValue} from "@chakra-ui/react";
 import {Heading} from '@chakra-ui/react'
-import {UpdateModal} from "./updatePodcastModal";
+import {UpdateModal} from "./crud/modals/updatePodcastModal";
 
 export type MyPodcastProps = {
     readPodcast: any;
