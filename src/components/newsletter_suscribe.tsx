@@ -61,8 +61,6 @@ export default function NewsletterForm() {
                         e.preventDefault();
                         setError(false);
                         setState('submitting');
-
-                        // remove this code and implement your submit logic right here
                         setTimeout(async () => {
                             if (email === 'fail@example.com') {
                                 setError(true);
@@ -73,7 +71,11 @@ export default function NewsletterForm() {
                             await InsertNewsletterEmailInDB(email)
 
                             setState('success');
-                        }, 1000);
+                        }, 400);
+                        setTimeout(async () => {
+                            setState('initial');
+                            setEmail('');
+                        },1700)
                     }}>
                     <FormControl>
                         <Input
