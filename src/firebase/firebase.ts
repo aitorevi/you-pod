@@ -28,4 +28,5 @@ export const signInWithGoogle = () => {
             console.log(error)
         });
 }
+
 export const db = getFirestore(app);
