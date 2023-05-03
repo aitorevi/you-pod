@@ -3,6 +3,7 @@ import {Button} from "@chakra-ui/react";
 
 const index = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
+
     const {data: session} = useSession()
     if (session) {
         return (
