@@ -59,8 +59,11 @@
 
 import React from "react";
 import PodcastRender from "@/components/podcastRender";
+
 export default function Podcast() {
+
         return (
             <PodcastRender/>
         )
+
 }

@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import * as process from "process"
+// import * as process from "process"
 
 export default NextAuth({
     providers: [

@@ -28,13 +28,11 @@ import {
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import React from "react";
-import {signOut, useSession} from "next-auth/react";
+import {signOut} from "next-auth/react";
 
 export default function WithSubnavigation() {
     const {isOpen, onToggle} = useDisclosure();
     const {colorMode, toggleColorMode} = useColorMode();
-    const {data: session} = useSession()
-    console.log(session)
     return (
         <Box>
             <Flex
@@ -51,7 +49,7 @@ export default function WithSubnavigation() {
                     flex={{base: 1, md: 'auto'}}
                     ml={{base: -2}}
                     display={{base: 'flex', md: 'none'}}>
-                    {session &&
+
                         <IconButton
                             onClick={onToggle}
                             icon={
@@ -60,7 +58,7 @@ export default function WithSubnavigation() {
                             variant={'ghost'}
                             aria-label={'Toggle Navigation'}
                         />
-                    }
+
                 </Flex>
                 <Flex flex={{base: 1}} justify={{base: 'center', md: 'start'}}>
                     <Text
@@ -93,8 +91,6 @@ export default function WithSubnavigation() {
                     <Button onClick={toggleColorMode}>
                         {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
                     </Button>
-                    {/*{*/}
-                    {/*    session ?*/}
                             <Button
                                 minW={"24"}
                                 onClick={() => signOut()}
@@ -110,7 +106,6 @@ export default function WithSubnavigation() {
                                 }}>
                                 Sign Out
                             </Button>
-                            {/*:*/}
                             <Button
                                 minW={"24"}
                                 as={'a'}
@@ -125,15 +120,11 @@ export default function WithSubnavigation() {
                                 }}>
                                 Sign Up
                             </Button>
-                    {/*}*/}
                 </Stack>
             </Flex>
-            {/*{*/}
-            {/*    session &&*/}
                 <Collapse in={isOpen} animateOpacity>
                     <MobileNav/>
                 </Collapse>
-            {/*}*/}
         </Box>
     );
 }
@@ -142,13 +133,13 @@ const DesktopNav = () => {
     const linkColor = useColorModeValue('gray.600', 'gray.200');
     const linkHoverColor = useColorModeValue('gray.800', 'white');
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
-    const {data: session} = useSession()
+    //const {data: session} = useSession()
     return (
         <Stack direction={'row'} spacing={4}>
             {NAV_ITEMS.map((navItem) => (
                 <Box key={navItem.label}>
                     <Popover trigger={'hover'} placement={'bottom-start'}>
-                        {session &&
+
                             <PopoverTrigger>
                                 <Link
                                     p={2}
@@ -163,7 +154,7 @@ const DesktopNav = () => {
                                     {navItem.label}
                                 </Link>
                             </PopoverTrigger>
-                        }
+
                         {navItem.children && (
                             <PopoverContent
                                 border={0}

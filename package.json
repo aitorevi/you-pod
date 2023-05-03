@@ -23,6 +23,7 @@
     "next": "13.2.4",
     "next-auth": "4.20.1",
     "p4-css": "1.5.1",
+    "process": "^0.11.10",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",

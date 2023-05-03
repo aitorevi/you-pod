@@ -1,5 +1,7 @@
 import '@/styles/globals.css'
+import type {AppProps} from 'next/app'
 import {ChakraProvider} from '@chakra-ui/react'
+import React from "react";
 import {SessionProvider} from "next-auth/react";
 
 type AppPropsType = {
@@ -7,14 +9,14 @@ type AppPropsType = {
     pageProps: any;
     session: any;
 }
-export default function App({Component, pageProps}: AppPropsType) {
+export default function App({Component, pageProps, session}: AppPropsType) {
     return (
         <>
-            <ChakraProvider>
-                <SessionProvider session={pageProps.session}>
+            <SessionProvider session={session}>
+                <ChakraProvider>
                     <Component {...pageProps} />
-                </SessionProvider>
-            </ChakraProvider>
+                </ChakraProvider>
+            </SessionProvider>
 
         </>
     )
