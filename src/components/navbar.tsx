@@ -28,11 +28,12 @@ import {
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import React from "react";
-import {signOut} from "next-auth/react";
+import {signOut, useSession} from "next-auth/react";
 
 export default function WithSubnavigation() {
     const {isOpen, onToggle} = useDisclosure();
     const {colorMode, toggleColorMode} = useColorMode();
+    const {data: session, status} = useSession()
     return (
         <Box>
             <Flex
@@ -50,14 +51,14 @@ export default function WithSubnavigation() {
                     ml={{base: -2}}
                     display={{base: 'flex', md: 'none'}}>
 
-                        <IconButton
-                            onClick={onToggle}
-                            icon={
-                                isOpen ? <CloseIcon w={3} h={3}/> : <HamburgerIcon w={5} h={5}/>
-                            }
-                            variant={'ghost'}
-                            aria-label={'Toggle Navigation'}
-                        />
+                    <IconButton
+                        onClick={onToggle}
+                        icon={
+                            isOpen ? <CloseIcon w={3} h={3}/> : <HamburgerIcon w={5} h={5}/>
+                        }
+                        variant={'ghost'}
+                        aria-label={'Toggle Navigation'}
+                    />
 
                 </Flex>
                 <Flex flex={{base: 1}} justify={{base: 'center', md: 'start'}}>
@@ -91,40 +92,43 @@ export default function WithSubnavigation() {
                     <Button onClick={toggleColorMode}>
                         {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
                     </Button>
-                            <Button
-                                minW={"24"}
-                                onClick={() => signOut()}
-                                as={'a'}
-                                display={{base: 'none', md: 'inline-flex'}}
-                                fontSize={'sm'}
-                                fontWeight={600}
-                                color={'white'}
-                                bg={'gray.900'}
-                                href={'/'}
-                                _hover={{
-                                    bg: 'gray.700',
-                                }}>
-                                Sign Out
-                            </Button>
-                            <Button
-                                minW={"24"}
-                                as={'a'}
-                                display={{base: 'none', md: 'inline-flex'}}
-                                fontSize={'sm'}
-                                fontWeight={600}
-                                color={'white'}
-                                bg={'gray.900'}
-                                href={'sign_up'}
-                                _hover={{
-                                    bg: 'gray.700',
-                                }}>
-                                Sign Up
-                            </Button>
+
+                    {(status === 'authenticated') &&
+                    <Button
+                        minW={"24"}
+                        onClick={() => signOut()}
+                        as={'a'}
+                        display={{base: 'none', md: 'inline-flex'}}
+                        fontSize={'sm'}
+                        fontWeight={600}
+                        color={'white'}
+                        bg={'gray.900'}
+                        href={'/'}
+                        _hover={{
+                            bg: 'gray.700',
+                        }}>
+                        Sign Out
+                    </Button>
+                }
+                    <Button
+                        minW={"24"}
+                        as={'a'}
+                        display={{base: 'none', md: 'inline-flex'}}
+                        fontSize={'sm'}
+                        fontWeight={600}
+                        color={'white'}
+                        bg={'gray.900'}
+                        href={'sign_up'}
+                        _hover={{
+                            bg: 'gray.700',
+                        }}>
+                        Sign Up
+                    </Button>
                 </Stack>
             </Flex>
-                <Collapse in={isOpen} animateOpacity>
-                    <MobileNav/>
-                </Collapse>
+            <Collapse in={isOpen} animateOpacity>
+                <MobileNav/>
+            </Collapse>
         </Box>
     );
 }
@@ -139,20 +143,20 @@ const DesktopNav = () => {
                 <Box key={navItem.label}>
                     <Popover trigger={'hover'} placement={'bottom-start'}>
 
-                            <PopoverTrigger>
-                                <Link
-                                    p={2}
-                                    href={navItem.href ?? '#'}
-                                    fontSize={'sm'}
-                                    fontWeight={500}
-                                    color={linkColor}
-                                    _hover={{
-                                        textDecoration: 'none',
-                                        color: linkHoverColor,
-                                    }}>
-                                    {navItem.label}
-                                </Link>
-                            </PopoverTrigger>
+                        <PopoverTrigger>
+                            <Link
+                                p={2}
+                                href={navItem.href ?? '#'}
+                                fontSize={'sm'}
+                                fontWeight={500}
+                                color={linkColor}
+                                _hover={{
+                                    textDecoration: 'none',
+                                    color: linkHoverColor,
+                                }}>
+                                {navItem.label}
+                            </Link>
+                        </PopoverTrigger>
 
                         {navItem.children && (
                             <PopoverContent

@@ -7,6 +7,7 @@ import {AdminPanel} from "@/components/adminPanel";
 import {CreatePodcastModal} from "@/components/crud/modals/createPodcastModal";
 import {collection, deleteDoc, doc, getDocs, orderBy, query} from "firebase/firestore";
 import {db} from "@/firebase/firebase";
+import {getSession} from "next-auth/react";
 export default function Podcast() {
     const [podcastList, setPodcastList] = useState<any[]>([]);
     const ReadPodcastInDB = async () => {
@@ -23,7 +24,7 @@ export default function Podcast() {
     }
     useEffect(() => {
         readPodcast().then(r => r);
-    }, )
+    },)
     const readPodcast = async () => {
         const podcasts = await ReadPodcastInDB();
         setPodcastList(podcasts.docs);
@@ -95,4 +96,21 @@ export default function Podcast() {
             </footer>
         </>
     )
+
+}
+
+export const getServerSideProps = async (context: any) => {
+    const session = await getSession(context)
+    if (!session) {
+        return (
+            {
+                redirect: {
+                    destination: '/'
+                }
+            }
+        )
+    }
+    return {
+        props: {session},
+    }
 }
