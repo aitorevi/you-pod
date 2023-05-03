@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import React, {ReactNode} from 'react';
 import {FaLinkedinIn, FaMedium, FaTwitter} from "react-icons/fa";
+import {useSession} from "next-auth/react";
 
 const SocialButton = ({
                           children,
@@ -60,7 +61,9 @@ export default function FooterSimple() {
                 <Stack direction={'row'} spacing={6}>
                     <Link href={'/'}>Home</Link>
                     <Link href={'about'}>About</Link>
-                    <Link href={'newsletter'}>Newsletter</Link>
+                    {/*{session &&*/}
+                        <Link href={'newsletter'}>Newsletter</Link>
+                    {/*}*/}
                 </Stack>
                 <Text>© 2023 You-Pod. All rights reserved</Text>
                 <Stack direction={'row'} spacing={6}>
