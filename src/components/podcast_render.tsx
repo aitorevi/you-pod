@@ -8,7 +8,7 @@ import {useEffect, useState} from "react";
 import {collection, getDocs, orderBy, query} from "firebase/firestore";
 import {db} from "@/firebase/firebase";
 
-export default function PodcastRender() {
+export default function Podcast_render() {
     interface PodcastData {
         url: string;
         description: string;

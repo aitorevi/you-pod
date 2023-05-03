@@ -56,7 +56,7 @@ export default function SignInPage() {
                                 <FormLabel>Password</FormLabel>
                                 <Input type="password"/>
                             </FormControl>
-                            <Stack spacing={10}>
+                            <Stack spacing={6}>
                                 <Stack
                                     direction={{base: 'column', sm: 'row'}}
                                     align={'start'}

@@ -58,12 +58,12 @@
 // }
 
 import React from "react";
-import PodcastRender from "@/components/podcastRender";
+import Podcast_render from "@/components/podcast_render";
 
 export default function Podcast() {
 
         return (
-            <PodcastRender/>
+            <Podcast_render/>
         )
 
 }

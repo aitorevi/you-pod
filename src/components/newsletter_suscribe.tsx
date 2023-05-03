@@ -29,7 +29,6 @@ export default function NewsletterForm() {
             const [docRef] = await Promise.all([addDoc(collection(db, "newsletter"), {
                 email: email
             })]);
-
         }
     }
 

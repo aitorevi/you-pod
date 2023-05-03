@@ -1,4 +1,5 @@
 import {useSession, signIn, signOut} from "next-auth/react";
+import {Button} from "@chakra-ui/react";
 
 const index = () => {
     const {data: session} = useSession()
@@ -6,14 +7,14 @@ const index = () => {
         return (
             <div>
                 <p>Welcome, {session.user?.name}</p>
-                <button onClick={() => signOut()}>Sign out</button>
+                <Button onClick={() => signOut()}>Sign out</Button>
             </div>
         )
     } else {
         return (
             <div>
                 <p>You are not signed in</p>
-                <button onClick={() => signIn()}>Sign in</button>
+                <Button onClick={() => signIn()}>Sign in</Button>
             </div>
         )
     }
