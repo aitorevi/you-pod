@@ -17,16 +17,14 @@ export const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-const provider = new GoogleAuthProvider();
-export const signInWithGoogle = () => {
-    signInWithPopup(auth, provider)
-        .then((result) => {
-            window.location.href = "/podcast";
-            //console.log(result)
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-}
+// const provider = new GoogleAuthProvider();
+// export const signInWithGoogle = () => {
+//     signInWithPopup(auth, provider)
+//         .then((result) => {
+//             window.location.href = "/podcast";
+//         })
+//         .catch((error) => {
+//         });
+// }
 
 export const db = getFirestore(app);

@@ -51,7 +51,6 @@ export const CreatePodcastModal:
             url: url,
             createAt: Date(),
         })]);
-        console.log(docRef.id)
     }
     const createPodcast = (e: FormEvent) => {
         e.preventDefault();

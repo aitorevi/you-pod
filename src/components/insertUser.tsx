@@ -9,7 +9,6 @@ export const InsertUserInDB = async (firstName: string, lastName: string, email:
             email: email,
             password: password,
         })]);
-        console.log("Document written with ID: ", docRef.id);
 
     }
 }

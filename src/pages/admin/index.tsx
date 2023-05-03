@@ -77,7 +77,6 @@ export default function Podcast() {
                         {
                             podcastList && podcastList.map(podcast => {
                                 return (
-
                                     <AdminPanel readPodcast={readPodcast}
                                                 deletePodcast={deletePodcast}
                                                 key={podcast.id}
