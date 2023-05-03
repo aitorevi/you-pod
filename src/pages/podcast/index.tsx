@@ -69,7 +69,6 @@ export default function Podcast() {
                 )
         }
 }
-
 export const getServerSideProps = async (context: any) => {
         const session = await getSession(context)
         if (!session) {
