@@ -62,25 +62,10 @@ import Podcast_render from "@/components/podcast_render";
 import {getSession, useSession} from "next-auth/react";
 
 export default function Podcast() {
-        const {data: session, status} = useSession()
-        if (status === 'authenticated') {
-                return (
-                    <Podcast_render/>
-                )
-        }
-}
-export const getServerSideProps = async (context: any) => {
-        const session = await getSession(context)
-        if (!session) {
-                return (
-                    {
-                            redirect: {
-                                    destination: '/'
-                            }
-                    }
-                )
-        }
-        return {
-                props: {session},
-        }
+    const {status} = useSession({required: true})
+    if (status === 'authenticated') {
+        return (
+            <Podcast_render/>
+        )
+    }
 }

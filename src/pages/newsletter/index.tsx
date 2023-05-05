@@ -6,8 +6,7 @@ import NewsletterForm from "../../components/newsletter_suscribe";
 import {getSession, useSession} from "next-auth/react";
 
 export default function Newsletter() {
-    const {data: session, status} = useSession()
-    if (status === 'authenticated') {
+
         return (
             <>
                 <Head>
@@ -23,21 +22,4 @@ export default function Newsletter() {
                 </footer>
             </>
         )
-    }
-}
-
-export const getServerSideProps = async (context: any) => {
-    const session = await getSession(context)
-    if (!session) {
-        return (
-            {
-                redirect: {
-                    destination: '/'
-                }
-            }
-        )
-    }
-    return {
-        props: {session},
-    }
 }

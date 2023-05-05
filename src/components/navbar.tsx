@@ -28,12 +28,11 @@ import {
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 import React from "react";
-import {signOut, useSession} from "next-auth/react";
+import {signOut} from "next-auth/react";
 
 export default function WithSubnavigation() {
     const {isOpen, onToggle} = useDisclosure();
     const {colorMode, toggleColorMode} = useColorMode();
-    const {data: session, status} = useSession()
     return (
         <Box>
             <Flex
@@ -93,7 +92,7 @@ export default function WithSubnavigation() {
                         {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
                     </Button>
 
-                    {(status === 'authenticated') &&
+
                     <Button
                         minW={"24"}
                         onClick={() => signOut()}
@@ -109,7 +108,7 @@ export default function WithSubnavigation() {
                         }}>
                         Sign Out
                     </Button>
-                }
+
                     <Button
                         minW={"24"}
                         as={'a'}
