@@ -59,7 +59,7 @@
 
 import React from "react";
 import Podcast_render from "@/components/podcast_render";
-import {getSession, useSession} from "next-auth/react";
+import {useSession} from "next-auth/react";
 
 export default function Podcast() {
     const {status} = useSession({required: true})

@@ -3,6 +3,7 @@ import '../firebase/firebase'
 import SignInPage from "../components/sign_in";
 import {signOut} from "next-auth/react";
 import {Button} from "@chakra-ui/react";
+import {buscarEpisodio, buscarUsuario} from "../../database/dbUsers";
 
 export default function Home() {
     // const {status} = useSession({required: true})
@@ -23,3 +24,7 @@ export default function Home() {
     //     <p>Res de res</p>;
     // }
 }
+
+// TODO: Eliminar estas funciones
+buscarEpisodio().then(r => r);
+buscarUsuario().then(r => r)

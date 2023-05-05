@@ -14,6 +14,7 @@ import {
 import {CheckIcon} from '@chakra-ui/icons';
 import {addDoc, collection} from "firebase/firestore";
 import {db} from "@/firebase/firebase";
+import {useSession} from "next-auth/react";
 
 export default function NewsletterForm() {
     const [email, setEmail] = useState('');
@@ -31,6 +32,7 @@ export default function NewsletterForm() {
             })]);
         }
     }
+
 
     return (
         <Flex
@@ -73,7 +75,7 @@ export default function NewsletterForm() {
                         setTimeout(async () => {
                             setState('initial');
                             setEmail('');
-                        },1700)
+                        }, 1700)
                     }}>
                     <FormControl>
                         <Input

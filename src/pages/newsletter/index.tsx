@@ -3,8 +3,11 @@ import Nav from '../../components/navbar'
 import FooterSimple from '../../components/footer'
 import React from "react";
 import NewsletterForm from "../../components/newsletter_suscribe";
-export default function Newsletter() {
+import {useSession} from "next-auth/react";
 
+export default function Newsletter() {
+    const {status} = useSession({required: true})
+    if (status === 'authenticated') {
         return (
             <>
                 <Head>
@@ -20,4 +23,5 @@ export default function Newsletter() {
                 </footer>
             </>
         )
+    }
 }
