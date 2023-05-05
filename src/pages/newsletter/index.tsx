@@ -3,8 +3,6 @@ import Nav from '../../components/navbar'
 import FooterSimple from '../../components/footer'
 import React from "react";
 import NewsletterForm from "../../components/newsletter_suscribe";
-import {getSession, useSession} from "next-auth/react";
-
 export default function Newsletter() {
 
         return (

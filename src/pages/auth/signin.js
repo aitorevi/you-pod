@@ -10,14 +10,20 @@ import {
     Text,
     useColorModeValue
 } from "@chakra-ui/react";
-import {getSession, signIn, signOut} from "next-auth/react";
+import {getSession, signIn, signOut, getProviders, useSession} from "next-auth/react";
 import Head from "next/head";
 import Nav from "../../components/navbar";
 import FooterSimple from "../../components/footer";
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 export default function SignInPage() {
+    const {data, status} = useSession()
 
+    useEffect(() => {
+        if (status == 'authenticated') {
+            console.log({user: data?.user})
+        }
+    },[status, data])
 
     return (
         <>
@@ -85,19 +91,19 @@ export default function SignInPage() {
 }
 
 
-export const getServerSideProps = async (context) => {
-    const session = await getSession(context)
-    if (session) {
-        return (
-            {
-                redirect: {
-                    destination: '/'
-                }
-            }
-        )
-    }
-
-    return {
-        props: {session},
-    }
-}
+// export const getServerSideProps = async (context) => {
+//     const session = await getSession(context)
+//     if (session) {
+//         return (
+//             {
+//                 redirect: {
+//                     destination: '/'
+//                 }
+//             }
+//         )
+//     }
+//
+//     return {
+//         props: {session},
+//     }
+// }

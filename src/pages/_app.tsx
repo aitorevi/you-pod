@@ -8,15 +8,14 @@ type AppPropsType = {
     pageProps: any;
     session: any;
 }
-export default function App({Component, pageProps, session}: AppPropsType) {
+export default function App({Component, pageProps}: AppPropsType) {
     return (
         <>
-            <SessionProvider session={session}>
+            <SessionProvider>
                 <ChakraProvider>
                     <Component {...pageProps} />
                 </ChakraProvider>
             </SessionProvider>
-
         </>
     )
 }
