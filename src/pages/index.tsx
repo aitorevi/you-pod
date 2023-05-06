@@ -1,30 +1,28 @@
 import React from "react";
 import '../firebase/firebase'
-import SignInPage from "../components/sign_in";
-import {signOut} from "next-auth/react";
-import {Button} from "@chakra-ui/react";
+import {useSession} from "next-auth/react";
+import Layout from "@/components/layout";
+import Homepage from "@/components/home_page";
 import {buscarEpisodio, buscarUsuario} from "../../database/dbUsers";
-
+import CustomSpinner from "@/components/custom_spinner";
 export default function Home() {
-    // const {status} = useSession({required: true})
-    // if (status === 'authenticated') {
+    const {status} = useSession({required: true});
 
-    return (
-        <>
-            <h1>Hola, esta es la pagina de inicio de la aplicacion cuando estas logueado</h1>
-            <Button onClick={() => signOut()}>Salir</Button>
-            <div>
-                <p>Welcome</p>
-                <Button onClick={() => signOut()}>Sign out</Button>
-            </div>
-        </>
-    )
-// }
-    // }else{
-    //     <p>Res de res</p>;
-    // }
+    if (status === "authenticated") {
+        return (
+            <>
+                <Layout props={''}>
+                    <Homepage/>
+                </Layout>
+            </>
+        )
+
+    } else {
+        return (
+            <CustomSpinner/>
+        )
+    }
 }
-
 // TODO: Eliminar estas funciones
 buscarEpisodio().then(r => r);
 buscarUsuario().then(r => r)

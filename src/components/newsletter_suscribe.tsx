@@ -14,8 +14,6 @@ import {
 import {CheckIcon} from '@chakra-ui/icons';
 import {addDoc, collection} from "firebase/firestore";
 import {db} from "@/firebase/firebase";
-import {useSession} from "next-auth/react";
-
 export default function NewsletterForm() {
     const [email, setEmail] = useState('');
     const [state, setState] = useState<'initial' | 'submitting' | 'success'>(

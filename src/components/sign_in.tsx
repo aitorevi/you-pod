@@ -19,8 +19,6 @@ import React from "react";
 import FooterSimple from "@/components/footer";
 
 export default function SignInPage() {
-
-
     return (
         <>
             <Head>

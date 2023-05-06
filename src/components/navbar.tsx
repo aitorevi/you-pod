@@ -92,7 +92,6 @@ export default function WithSubnavigation() {
                         {colorMode === 'light' ? <MoonIcon/> : <SunIcon/>}
                     </Button>
 
-
                     <Button
                         minW={"24"}
                         onClick={() => signOut()}

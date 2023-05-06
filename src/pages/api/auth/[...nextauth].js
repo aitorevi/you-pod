@@ -13,7 +13,7 @@ export default NextAuth({
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET
         }),
-        Credentials({
+        Credentials({ // TODO: Implementar las credenciales personalizadas
             name: 'Custom Login',
             credentials: {
                 email: {label: 'Correo', type: 'email', placeholder: 'correo@tucorreo.com'},
@@ -27,7 +27,22 @@ export default NextAuth({
         })
 
     ],
-    // secret: process.env.JWT_SECRET,   Deprecated
+    secret: process.env.JWT_SECRET,
+
+    // Custom pages
+    pages: {
+        signIn: "/auth/signin",
+    },
+
+    jwt: {
+
+    },
+
+    session: {
+        maxAge: 2592000,
+        strategy: "jwt",
+        updateAge: 86400,
+    },
 
     // Callbacks
     callbacks: {
@@ -51,13 +66,4 @@ export default NextAuth({
             return session
         }
     }
-
-    // Si dejo esto sin comentar, cuando hago signOut me redirige correctamente a la pagina sigin
-    // pages: {
-    //     signIn: "/auth/signin",
-    // },
-    // si lo dejo sin comentar cuando intento loguearme no puedo, me redirige a signin todo el rato
-
-    // si lo comento, cuando hago signOut me redirige a una pagina de google para que me loguee
-
 });
