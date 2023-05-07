@@ -6,7 +6,7 @@ const HomePage = () => {
     return (
         <>
             <Box
-                bg={useColorModeValue('gray.50', 'gray.800')}
+                bg={useColorModeValue('whiteAlpha.50', 'gray.800')}
             >
                 <Flex
                     minW='100%'
