@@ -254,6 +254,9 @@
     );
     z-index: 1;
   }
+  /*.homePageText {*/
+  /*  font-size: 15px;*/
+  /*}*/
 }
 
 /* Tablet and Smaller Desktop */
