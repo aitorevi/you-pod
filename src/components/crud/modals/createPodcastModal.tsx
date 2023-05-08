@@ -18,6 +18,7 @@ import React, {FormEvent, useState} from "react";
 import {CheckIcon} from "@chakra-ui/icons";
 import {addDoc, collection} from "firebase/firestore";
 import {db} from "@/firebase/firebase";
+import moment from "moment";
 
 type MyModalProps = {
     readPodcast: any;
@@ -45,11 +46,13 @@ export const CreatePodcastModal:
         setUrl(e.target.value);
     };
     const CreatePodcastInDB = async (title: string, description: string, url: string) => {
+        const currentDate = new Date();
+        const currentDateIso8601 = moment(currentDate).toISOString();
         const [docRef] = await Promise.all([addDoc(collection(db, "podcast"), {
             title: title,
             description: description,
             url: url,
-            createAt: Date(),
+            createAt: currentDateIso8601,
         })]);
     }
     const createPodcast = (e: FormEvent) => {
