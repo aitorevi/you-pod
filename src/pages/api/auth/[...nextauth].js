@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
-import Credentials from "next-auth/providers/credentials";
 
 export default NextAuth({
     providers: [
@@ -13,18 +12,18 @@ export default NextAuth({
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET
         }),
-        Credentials({ // TODO: Implementar las credenciales personalizadas
-            name: 'Custom Login',
-            credentials: {
-                email: {label: 'Correo', type: 'email', placeholder: 'correo@tucorreo.com'},
-                password: {label: 'Contraseña', type: 'password', placeholder: 'Contraseña'}
-            },
-            async authorize(credentials) {
-                console.log({credentials})
-                // TODO: validar contra base de datos
-                return {name: 'juanito', email: 'juanito@a.com', role: 'admin'};
-            }
-        })
+        // Credentials({ // TODO: Implementar las credenciales personalizadas
+        //     name: 'Custom Login',
+        //     credentials: {
+        //         email: {label: 'Correo', type: 'email', placeholder: 'correo@tucorreo.com'},
+        //         password: {label: 'Contraseña', type: 'password', placeholder: 'Contraseña'}
+        //     },
+        //     async authorize(credentials) {
+        //         console.log({credentials})
+        //         // TODO: validar contra base de datos
+        //         return {name: 'juanito', email: 'juanito@a.com', role: 'admin'};
+        //     }
+        // })
 
     ],
     secret: process.env.JWT_SECRET,
