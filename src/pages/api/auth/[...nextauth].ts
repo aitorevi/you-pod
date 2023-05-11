@@ -36,6 +36,7 @@ export default NextAuth({
                 return { email: credentials.email };
             }
         }),
+
         // Credentials({ // TODO: Implementar las credenciales personalizadas
         //     name: 'Custom Login',
         //     credentials: {
