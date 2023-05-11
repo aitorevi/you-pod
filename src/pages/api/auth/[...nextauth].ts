@@ -1,16 +1,40 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
+import CredentialsProvider from 'next-auth/providers/credentials';
+import { FirestoreAdapter } from "@next-auth/firebase-adapter";
+import { cert } from "firebase-admin/app";
 
+type Credentials = Record<"name" | "email" | "password", string> | undefined
 export default NextAuth({
+    adapter: FirestoreAdapter({
+        credential: cert({
+            projectId: process.env.FIREBASE_PROJECT_ID,
+            clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+            privateKey: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        }),
+    }),
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
         }),
         GithubProvider({
-            clientId: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_SECRET
+            clientId: process.env.GITHUB_ID as string,
+            clientSecret: process.env.GITHUB_SECRET as string
+        }),
+        CredentialsProvider({
+            id: 'email',
+            name: 'Email',
+            credentials: {
+                email: { label: 'Email', type: 'email', placeholder: 'email@example.com' },
+                password: { label: 'Password', type: 'password' },
+            },
+            async authorize(credentials) {
+                // if ( ... )
+                console.log(credentials.email)
+                return { email: credentials.email };
+            }
         }),
         // Credentials({ // TODO: Implementar las credenciales personalizadas
         //     name: 'Custom Login',

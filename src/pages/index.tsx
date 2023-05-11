@@ -5,9 +5,11 @@ import Layout from "@/components/layout";
 import Homepage from "@/components/home_page";
 import {buscarEpisodio, buscarUsuario} from "../../database/dbUsers";
 import CustomSpinner from "@/components/custom_spinner";
+
 export default function Home() {
     const {status} = useSession({required: true});
-
+    //const [user, loading] = useAuthState(auth);
+    //console.log(user)
     if (status === "authenticated") {
         return (
             <>

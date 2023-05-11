@@ -1,7 +1,8 @@
 import {getFirestore} from "firebase/firestore";
 import {initializeApp} from "firebase/app";
-import {getAuth, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {getAuth, GoogleAuthProvider, signInWithEmailAndPassword} from "firebase/auth";
 import * as process from "process"
+import {getStorage} from "@firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 const firebaseConfig = {
@@ -14,14 +15,33 @@ const firebaseConfig = {
 };
 
 export const app = initializeApp(firebaseConfig);
+export const storage = getStorage(app);
+export const auth = getAuth(app);
 
-// export const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
-// const provider = new GoogleAuthProvider();
+// export const getUser = async () => {
+//     const user = await auth.currentUser
+//     return user
+// }
+export const logIn = async (email: string, password: string) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password)
+                const user = userCredential.user;
+                // console.log(user)
+        const user2 = auth.currentUser;
+        console.log(user2)
+                return user
+    } catch (error) {
+        console.error("Error signing in: ", error);
+    }
+};
+
+
 // export const signInWithGoogle = () => {
 //     signInWithPopup(auth, provider)
 //         .then((result) => {
-//             window.location.href = "/podcast";
+//             window.location.href = "/";
 //         })
 //         .catch((error) => {
 //         });

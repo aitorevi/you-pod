@@ -108,20 +108,20 @@ export default function WithSubnavigation() {
                         Sign Out
                     </Button>
 
-                    <Button
-                        minW={"24"}
-                        as={'a'}
-                        display={{base: 'none', md: 'inline-flex'}}
-                        fontSize={'sm'}
-                        fontWeight={600}
-                        color={'white'}
-                        bg={'gray.900'}
-                        href={'sign_up'}
-                        _hover={{
-                            bg: 'gray.700',
-                        }}>
-                        Sign Up
-                    </Button>
+                    {/*<Button*/}
+                    {/*    minW={"24"}*/}
+                    {/*    as={'a'}*/}
+                    {/*    display={{base: 'none', md: 'inline-flex'}}*/}
+                    {/*    fontSize={'sm'}*/}
+                    {/*    fontWeight={600}*/}
+                    {/*    color={'white'}*/}
+                    {/*    bg={'gray.900'}*/}
+                    {/*    href={'sign_up'}*/}
+                    {/*    _hover={{*/}
+                    {/*        bg: 'gray.700',*/}
+                    {/*    }}>*/}
+                    {/*    Sign Up*/}
+                    {/*</Button>*/}
                 </Stack>
             </Flex>
             <Collapse in={isOpen} animateOpacity>

@@ -7,8 +7,12 @@ export default function SignIn({ providers }) {
         <SignInPage/>
     );
 }
+
 export const getServerSideProps = async (context) => {
     const providers = await getProviders();
+// eslint-disable-next-line react-hooks/rules-of-hooks
+//     const user = await getUser();
+//     console.log(user)
     const session = await getSession(context);
     if (session) {
         return {
