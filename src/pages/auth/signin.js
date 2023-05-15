@@ -2,9 +2,9 @@ import {getProviders, getSession} from "next-auth/react";
 import React from "react";
 import SignInPage from "../../components/sign_in";
 
-export default function SignIn() {
+export default function SignIn(providers) {
     return (
-        <SignInPage/>
+        <SignInPage providers={providers}/>
     );
 }
 

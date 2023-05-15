@@ -1,24 +1,24 @@
 import {
   Flex,
   Box,
-  FormControl,
-  FormLabel,
-  Input,
   Stack,
   Link,
   Button,
   Heading,
   Text,
   useColorModeValue,
+  FormControl,
+  FormLabel,
+  Input,
 } from "@chakra-ui/react";
 import { signIn } from "next-auth/react";
 import Head from "next/head";
-import React, { useRef } from "react";
-import { FaGithub, FaGoogle } from "react-icons/fa";
+import React from "react";
+import { FaGoogle } from "react-icons/fa";
 import styles from "@/styles/Home.module.css";
 import Image from "next/image";
 
-export default function SignInPage() {
+export default function SignInPage({ providers }: any) {
   return (
     <>
       <Head>
@@ -51,6 +51,14 @@ export default function SignInPage() {
             p={8}
           >
             <Stack as={"form"} spacing={4}>
+              <FormControl isRequired>
+                <FormLabel>Email address</FormLabel>
+                <Input type={"email"} id={"email"} />
+              </FormControl>
+              <FormControl isRequired>
+                <FormLabel>Password</FormLabel>
+                <Input type={"password"} id={"password"} />
+              </FormControl>
               <Image
                 className={styles.logo}
                 src="/you-pod-nav.svg"
@@ -59,14 +67,20 @@ export default function SignInPage() {
                 height={100}
                 priority
               />
-              <Button
-                bg={"red"}
-                color={"white"}
-                leftIcon={<FaGoogle />}
-                onClick={() => signIn("google")}
-              >
-                Google
-              </Button>
+
+              {Object.values(providers.providers).map((provider: any) => {
+                return (
+                  <Button
+                    key={provider.id}
+                    bg={"gray"}
+                    color={"white"}
+                    leftIcon={<FaGoogle />}
+                    onClick={() => signIn(provider.id)}
+                  >
+                    Sign in with {provider.name}
+                  </Button>
+                );
+              })}
             </Stack>
           </Box>
         </Stack>

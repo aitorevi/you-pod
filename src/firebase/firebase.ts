@@ -1,6 +1,6 @@
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import * as process from "process"
 import { getStorage } from "@firebase/storage";
 
@@ -18,31 +18,19 @@ export const app = initializeApp(firebaseConfig);
 export const storage = getStorage(app);
 export const auth = getAuth(app);
 
-const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
 export const getUser = async () => {
     const user = await auth.currentUser
+    console.log(user)
     return user
 }
 export const logIn = async (email: string, password: string) => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password)
         const user = userCredential.user;
-        const user2 = auth.currentUser;
         return user
     } catch (error) {
         console.error("Error signing in: ", error);
     }
 };
-
-
-// export const signInWithGoogle = () => {
-//     signInWithPopup(auth, provider)
-//         .then((result) => {
-//             window.location.href = "/";
-//         })
-//         .catch((error) => {
-//         });
-// }
-
