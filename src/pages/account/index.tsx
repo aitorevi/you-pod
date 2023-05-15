@@ -65,12 +65,10 @@ export default function FileUploader() {
 
             uploadTask.on('state_changed', (snapshot) => {
                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log(`Upload is ${progress}% done`);
             }, (error) => {
                 console.error(error);
             }, () => {
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                    console.log(`File available at ${downloadURL}`);
                     setUploading(false);
                 });
             });

@@ -2,7 +2,7 @@ import {getProviders, getSession} from "next-auth/react";
 import React from "react";
 import SignInPage from "../../components/sign_in";
 
-export default function SignIn({ providers }) {
+export default function SignIn() {
     return (
         <SignInPage/>
     );
@@ -10,9 +10,6 @@ export default function SignIn({ providers }) {
 
 export const getServerSideProps = async (context) => {
     const providers = await getProviders();
-// eslint-disable-next-line react-hooks/rules-of-hooks
-//     const user = await getUser();
-//     console.log(user)
     const session = await getSession(context);
     if (session) {
         return {

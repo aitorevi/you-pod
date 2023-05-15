@@ -1,8 +1,8 @@
-import {getFirestore} from "firebase/firestore";
-import {initializeApp} from "firebase/app";
-import {getAuth, GoogleAuthProvider, signInWithEmailAndPassword} from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
 import * as process from "process"
-import {getStorage} from "@firebase/storage";
+import { getStorage } from "@firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 const firebaseConfig = {
@@ -21,22 +21,20 @@ export const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 export const db = getFirestore(app);
 
-// export const getUser = async () => {
-//     const user = await auth.currentUser
-//     return user
-// }
-// export const logIn = async (email: string, password: string) => {
-//     try {
-//         const userCredential = await signInWithEmailAndPassword(auth, email, password)
-//                 const user = userCredential.user;
-//                 // console.log(user)
-//         const user2 = auth.currentUser;
-//         console.log(user2)
-//                 return user
-//     } catch (error) {
-//         console.error("Error signing in: ", error);
-//     }
-// };
+export const getUser = async () => {
+    const user = await auth.currentUser
+    return user
+}
+export const logIn = async (email: string, password: string) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password)
+        const user = userCredential.user;
+        const user2 = auth.currentUser;
+        return user
+    } catch (error) {
+        console.error("Error signing in: ", error);
+    }
+};
 
 
 // export const signInWithGoogle = () => {

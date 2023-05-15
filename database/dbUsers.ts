@@ -8,7 +8,6 @@ export const buscarEpisodio = async () => {
     const querySnapshot = await getDocs(queryPodcast);
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
     });
 }
 
@@ -20,6 +19,5 @@ export const buscarUsuario = async () => {
     const querySnapshot = await getDocs(queryUsuario);
     querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
     });
 }
