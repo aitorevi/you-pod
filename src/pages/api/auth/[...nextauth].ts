@@ -11,8 +11,8 @@ export default NextAuth({
             projectId: process.env.FIREBASE_PROJECT_ID,
             clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
             privateKey: process.env.FIREBASE_PRIVATE_KEY !== undefined
-            ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
-            : '',
+                ? process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n')
+                : '',
         }),
     }),
     providers: [
@@ -25,18 +25,23 @@ export default NextAuth({
         //     clientSecret: process.env.GITHUB_SECRET as string
         // }),
         CredentialsProvider({
-            id: 'email',
-            name: 'Email',
+            name: "Credentials",
             credentials: {
-                email: { label: 'Email', type: 'email', placeholder: 'email@example.com' },
-                password: { label: 'Password', type: 'password' },
+                username: { label: "Username", type: "text", placeholder: "jsmith" },
+                password: { label: "Password", type: "password" }
             },
-            async authorize(credentials) {
-                // if ( ... )
-                console.log(credentials.email)
-                return { email: credentials.email };
+            async authorize(credentials, req) {
+                // Add logic here to look up the user from the credentials supplied
+                console.log({ credentials })
+                const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
+
+                if (user) {
+                    return user
+                } else {
+                    return null
+                }
             }
-        }),
+        })
 
         // Credentials({ // TODO: Implementar las credenciales personalizadas
         //     name: 'Custom Login',
@@ -71,7 +76,7 @@ export default NextAuth({
 
     // Callbacks
     callbacks: {
-        async jwt({token, account, user}) {
+        async jwt({ token, account, user }) {
             if (account) {
                 token.accessToken = account.access_token
                 switch (account.type) {
@@ -85,7 +90,7 @@ export default NextAuth({
             }
             return token
         },
-        async session({session, token, user}) {
+        async session({ session, token, user }) {
             session.accessToken = token.accessToken;
             session.user = token.user;
             return session
