@@ -33,7 +33,7 @@ import { signOut, useSession } from "next-auth/react";
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
-  const { data: session } = useSession({ required: true });
+  const { data: session } = useSession();
 
   const isAdmin = session?.user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL;
 

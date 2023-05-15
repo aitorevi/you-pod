@@ -23,6 +23,3 @@ export default function Home() {
         )
     }
 }
-// TODO: Eliminar estas funciones
-// buscarEpisodio().then(r => r);
-// buscarUsuario().then(r => r)
