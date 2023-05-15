@@ -45,7 +45,7 @@ import {getDownloadURL, ref, uploadBytesResumable} from "@firebase/storage";
 import {storage} from "@/firebase/firebase";
 
 export default function FileUploader() {
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState<File | null>(null);
     const [uploading, setUploading] = useState(false);
 
     const handleFileChange = (event: any) => {
