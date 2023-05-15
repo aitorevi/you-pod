@@ -22,8 +22,8 @@ export default function SignInPage() {
     const emailRef = useRef(null)
     const passwordRef = useRef(null)
     const handleLogin = async () => {
-        const email = emailRef.current?.value;
-        const password = passwordRef.current?.value;
+        const email = (emailRef.current as HTMLInputElement | null)?.value;
+        const password = (passwordRef.current as HTMLInputElement | null)?.value;
 
         try {
             const result = await signIn('credentials', {
