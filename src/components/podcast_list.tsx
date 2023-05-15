@@ -1,53 +1,44 @@
 import React from "react";
-import {Container, Grid, Stack, useColorModeValue} from "@chakra-ui/react";
-import styles from "@/styles/Home.module.css";
-import Image from "next/image";
-import {Text} from '@chakra-ui/react'
-import {Heading} from '@chakra-ui/react'
+import {Podcast} from "@/components/podcast";
+import {Box, useColorModeValue} from "@chakra-ui/react";
+import {useEffect, useState} from "react";
+import {collection, getDocs, orderBy, query} from "firebase/firestore";
+import {db} from "@/firebase/firebase";
 
-type MyPlayerProps = {
-    url: string;
-    title: string;
-    description: string;
-}
-export const PodcastList: React.FunctionComponent<MyPlayerProps> = ({url, title, description}) => {
+export default function Podcast_list() {
+    interface PodcastData {
+        url: string;
+        description: string;
+        title: string;
+    }
+
+    const [podcastCollection, setPodcastCollection] = useState<PodcastData[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const dataSnapshot = await getDocs(query(collection(db, "podcast"), orderBy("createAt", "desc")));
+            const podcastData = dataSnapshot.docs.map((doc) => doc.data() as PodcastData);
+            await setPodcastCollection(podcastData);
+        };
+        fetchData().then(r => r);
+    }, []);
+
     return (
         <>
-            <Container
-                as={Stack}
-                maxW={'4xl'}
-                py={4}
-                direction={{base: 'column', md: 'row'}}
-                spacing={{base: 4, md: 10}}
-                justify={{base: 'center', md: 'center'}}
-                align={{base: 'center', md: 'center'}}
-                bg={useColorModeValue('gray.50', 'gray.800')}>
-                <Stack>
-                    <div className={styles.youpod}>
-                        <Image
-                            src="/defaultImage.svg"
-                            alt="Logo"
-                            width={230}
-                            height={230}
-                            priority
-                        />
-                    </div>
-                </Stack>
-                <Stack>
-                    <Heading as='h3' size='lg'>{title}</Heading>
-                    <Text
-                        noOfLines={[1, 2, 3]}
-                        display={{base: "none", md: "inline"}}>
-                        {description}
-                    </Text>
-                    <Grid
-                        justifyContent={{base: 'center', md: 'center'}}>
-                        <audio controls>
-                            <source src={url} type="audio/mpeg"/>
-                        </audio>
-                    </Grid>
-                </Stack>
-            </Container>
+            <Box
+                bg={useColorModeValue('gray.50', 'gray.800')}
+                minH={'100vh'}>
+                {
+                    podcastCollection.map((podcast) => {
+                        return (
+                            <Podcast key={podcast.title.toString()}
+                                     url={podcast.url}
+                                     title={podcast.title}
+                                     description={podcast.description}
+                            />
+                        )
+                    })}
+            </Box>
         </>
     )
 }

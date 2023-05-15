@@ -1,5 +1,5 @@
 import React from "react";
-import Podcast_render from "@/components/podcast_render";
+import Podcast_list from "@/components/podcast_list";
 import {useSession} from "next-auth/react";
 import Layout from "@/components/layout";
 
@@ -9,7 +9,7 @@ export default function Podcast() {
         return (
             <>
                 <Layout props={''}>
-                    <Podcast_render/>
+                    <Podcast_list/>
                 </Layout>
             </>
         )

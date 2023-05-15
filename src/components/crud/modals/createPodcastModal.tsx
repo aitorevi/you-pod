@@ -36,13 +36,13 @@ export const CreatePodcastModal:
         'initial'
     );
 
-    const handleChangeTitle = async (e: any) => {
+    const handleChangeTitle = (e: any) => {
         setTitle(e.target.value);
     };
-    const handleChangeDescription = async (e: any) => {
-        setDescription(e.target.value);
+    const handleChangeDescription = (e: any) => {
+        setDescription(e.taget.value);
     };
-    const handleChangeUrl = async (e: any) => {
+    const handleChangeUrl = (e: any) => {
         setUrl(e.target.value);
     };
     const CreatePodcastInDB = async (title: string, description: string, url: string) => {

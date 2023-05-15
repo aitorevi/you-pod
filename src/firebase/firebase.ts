@@ -19,23 +19,24 @@ export const storage = getStorage(app);
 export const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
+export const db = getFirestore(app);
 
 // export const getUser = async () => {
 //     const user = await auth.currentUser
 //     return user
 // }
-export const logIn = async (email: string, password: string) => {
-    try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password)
-                const user = userCredential.user;
-                // console.log(user)
-        const user2 = auth.currentUser;
-        console.log(user2)
-                return user
-    } catch (error) {
-        console.error("Error signing in: ", error);
-    }
-};
+// export const logIn = async (email: string, password: string) => {
+//     try {
+//         const userCredential = await signInWithEmailAndPassword(auth, email, password)
+//                 const user = userCredential.user;
+//                 // console.log(user)
+//         const user2 = auth.currentUser;
+//         console.log(user2)
+//                 return user
+//     } catch (error) {
+//         console.error("Error signing in: ", error);
+//     }
+// };
 
 
 // export const signInWithGoogle = () => {
@@ -47,4 +48,3 @@ export const logIn = async (email: string, password: string) => {
 //         });
 // }
 
-export const db = getFirestore(app);

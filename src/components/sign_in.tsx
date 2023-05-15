@@ -112,13 +112,13 @@ export default function SignInPage() {
                                     onClick={() => signIn('google')}>
                                     Google
                                 </Button>
-                                <Button
-                                    bg={'gray.800'}
-                                    color={'white'}
-                                    leftIcon={<FaGithub/>}
-                                    onClick={() => signIn('github')}>
-                                    GitHub
-                                </Button>
+                                {/*<Button*/}
+                                {/*    bg={'gray.800'}*/}
+                                {/*    color={'white'}*/}
+                                {/*    leftIcon={<FaGithub/>}*/}
+                                {/*    onClick={() => signIn('github')}>*/}
+                                {/*    GitHub*/}
+                                {/*</Button>*/}
                             {/*</Stack>*/}
                         </Stack>
                     </Box>
