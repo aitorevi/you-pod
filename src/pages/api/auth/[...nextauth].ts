@@ -4,7 +4,6 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { FirestoreAdapter } from "@next-auth/firebase-adapter";
 import { cert } from "firebase-admin/app";
 
-type Credentials = Record<"name" | "email" | "password", string> | undefined
 export default NextAuth({
     adapter: FirestoreAdapter({
         credential: cert({
@@ -20,10 +19,6 @@ export default NextAuth({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
         }),
-        // GithubProvider({
-        //     clientId: process.env.GITHUB_ID as string,
-        //     clientSecret: process.env.GITHUB_SECRET as string
-        // }),
         CredentialsProvider({
             name: "Credentials",
             credentials: {
@@ -42,20 +37,6 @@ export default NextAuth({
                 }
             }
         })
-
-        // Credentials({ // TODO: Implementar las credenciales personalizadas
-        //     name: 'Custom Login',
-        //     credentials: {
-        //         email: {label: 'Correo', type: 'email', placeholder: 'correo@tucorreo.com'},
-        //         password: {label: 'Contraseña', type: 'password', placeholder: 'Contraseña'}
-        //     },
-        //     async authorize(credentials) {
-        //         console.log({credentials})
-        //         // TODO: validar contra base de datos
-        //         return {name: 'juanito', email: 'juanito@a.com', role: 'admin'};
-        //     }
-        // })
-
     ],
     secret: process.env.JWT_SECRET,
 
